@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script id="templateHB" type="text/x-handlebars-template">
+        <section class="container">
+            <table id="board">
+                {{#each board}}
+                    <!-- Outer 3x3 box -->
+                    {{#if (beginRow @index)}}
+                        <tr>
+                    {{/if}}
+                            <td class="box">
+                                <table>
+                                    {{#each this}}
+                                        <!-- Inner 3x3 box -->
+                                        {{#if (beginRow @index)}}
+                                            <tr>
+                                        {{/if}}
+                                         
+                                        <!-- Add unique id based on outerBox~innerBox indexes-->
+                                        {{#if (startingValue this)}}
+                                            <td id="{{@../index}}~{{@index}}" class="cell starter">{{this}}</td>
+                                        {{else}}
+                                            <td id="{{@../index}}~{{@index}}" class="cell">{{this}}</td>
+                                        {{/if}}
+                                        
+                                        {{#if (endRow @index)}}
+                                            </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                </table>
+                            </td>
+                    {{#if (endRow @index)}}
+                        </tr>
+                    {{/if}}
+                {{/each}}
+            </table>
+        </section>
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <section class="container">
+            <h1 class="branding">Sudoku</h1>
+            <nav>
+                <ul class="navbar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sudoku.html">Sudoku</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <section id="gameArea"></section>
+    <script src="main.js"></script>
+</body>
+</html>

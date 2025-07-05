@@ -1,0 +1,89 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+/* table {
+    border: 1px solid black;
+}
+
+tr {
+    background: aquamarine;
+}
+
+td {
+    border: 0.5px solid gray;
+} */
+
+header {
+    padding-top: 1%;
+    min-height: 90px;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.branding {
+    float: left;
+}
+
+nav {
+    float: right;
+}
+
+.navbar {
+    margin-top: 15%;
+}
+
+.navbar li {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.navbar li a {
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: normal;
+}
+
+#board {
+    border: 1px solid;
+    margin: 0px auto;
+    width: 500px;
+    height: 500px;
+    background-color: black;
+}
+
+.box {
+    border: 1px solid;
+    width: 75px;
+    height: 75px;
+    background-color: black;
+}
+
+.cell {
+    border: 1px solid gray;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: xx-large;
+    background-color: white;
+}
+
+.starter {
+    background-color: lightgray;
+}
+
+.highlighted {
+    background-color: yellow;
+}
+
+.preventingCell {
+    animation: redFade 1s forwards;
+}
+
+@keyframes redFade {
+  0% {
+    background-color: red;
+  }
+}
