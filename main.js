@@ -22,9 +22,7 @@ const evaluateAnswer = userInput => {
     // Ignore the same answer being passed-in
     if (context.board[context.currentBoxIndex][context.currentCellIndex] == userInput) return;
 
-    // 1) Same box
-    // 2) Horizontally
-    // 3) Vertically
+    // Highlight cells preventing userInput
     if (foundInCurrentBox(userInput) || foundHorizontally(userInput) || foundVertically(userInput)) return;
 
     updateBoard(userInput);
@@ -100,10 +98,7 @@ const updateBoard = newValue => {
 }
 
 const highlightCell = cellId => {
-    //document.getElementById(cellId).style.borderColor = 'red';
-    //if (context.currentPreventingCellId && cellId != context.currentPreventingCellId) document.getElementById(context.currentPreventingCellId).style.border = '1px solid gray';
     context.currentPreventingCellId = cellId;
-    //document.getElementById(cellId).style.border = '2px solid red';
     document.getElementById(cellId).classList.add("preventingCell");
     document.getElementById(cellId).addEventListener("animationend", () => { document.getElementById(cellId).classList.remove("preventingCell") }); 
 }
@@ -116,9 +111,9 @@ const template = Handlebars.compile(templateSource);
 
 // *********************************************************************************************************
 // Handlebar Helpers
-Handlebars.registerHelper('beginRow'      ,   function(index) { return rowBeginningIndexes.includes(index) } );
-Handlebars.registerHelper('endRow'        ,   function(index) { return rowEndingIndexes.includes(index)    } );
-Handlebars.registerHelper('startingValue' ,   function(value) { return value                               } );
+Handlebars.registerHelper('beginRow'      ,   function(index) { return rowBeginningIndexes.includes(index) } ); // Returns TRUE if starting a row
+Handlebars.registerHelper('endRow'        ,   function(index) { return rowEndingIndexes.includes(index)    } ); // Returns TRUE if ending a row
+Handlebars.registerHelper('startingValue' ,   function(value) { return value                               } ); // Returns TRUE if value is populated at the start
 // *********************************************************************************************************
 
 const compiledHtml = template(context);
@@ -138,7 +133,6 @@ elements.forEach((clickedCell) => {
 
         //Reset cell styles
         if (context.currentCellId && clickedCell.id != context.currentCellId) document.getElementById(context.currentCellId).classList.remove('highlighted');
-        //if (context.currentPreventingCellId) document.getElementById(context.currentPreventingCellId).style.border = '1px solid gray';
         
         // Track current cell
         context.currentCellId = clickedCell.id;
@@ -146,7 +140,6 @@ elements.forEach((clickedCell) => {
         findHorizontalIndexes();
         findVerticalIndexes();
 
-        //if (clickedCell.style.backgroundColor != 'lightgray') clickedCell.style.backgroundColor = 'Yellow';
         clickedCell.classList.add('highlighted');
         
         addEventListener("keydown",  (event) => { if (event.key == 'Backspace') updateBoard('') });
