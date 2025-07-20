@@ -8,24 +8,36 @@
     <script id="templateHB" type="text/x-handlebars-template">
         <section class="container">
             <table id="board">
+                <!-- Outer 3x3 box -->
                 {{#each board}}
-                    <!-- Outer 3x3 box -->
                     {{#if (beginRow @index)}}
                         <tr>
                     {{/if}}
                             <td class="box">
                                 <table>
+                                    <!-- Inner 3x3 box -->
                                     {{#each this}}
-                                        <!-- Inner 3x3 box -->
                                         {{#if (beginRow @index)}}
                                             <tr>
                                         {{/if}}
                                          
                                         <!-- Add unique id based on outerBox~innerBox indexes-->
-                                        {{#if (startingValue this)}}
-                                            <td id="{{@../index}}~{{@index}}" class="cell starter">{{this}}</td>
+                                        {{#if (startingValue this.answer)}}
+                                            <td id="{{@../index}}~{{@index}}" class="cell starter">{{this.answer}}</td>
                                         {{else}}
-                                            <td id="{{@../index}}~{{@index}}" class="cell">{{this}}</td>
+                                            <td id="{{@../index}}~{{@index}}" class="cell">
+                                                <table>
+                                                    {{#each this.writeIns}}
+                                                        {{#if (beginRow @index)}}
+                                                            <tr>
+                                                        {{/if}}
+                                                        <td id="{{@../../index}}~{{@../index}}~{{@index}}" class="write-in">{{this}}</td>
+                                                        {{#if (endRow @index)}}
+                                                            </tr>
+                                                        {{/if}}
+                                                    {{/each}}
+                                                </table>
+                                            </td>
                                         {{/if}}
                                         
                                         {{#if (endRow @index)}}
@@ -55,7 +67,12 @@
             </nav>
         </section>
     </header>
-    <section id="gameArea"></section>
+    <section id="gameArea">test</section>
+    <section class="gameOptions">
+        <ul>
+            <input type="button" value="Write-In" onclick="toggleWriteIn(this)">
+        </ul>
+    </section>
     <script src="main.js"></script>
 </body>
 </html>

@@ -4,23 +4,33 @@ const context = {
     currentCellId: '',
     currentPreventingCellId: '',
     possibleAnswers: ['1','2','3','4','5','6','7','8','9'],
+    writeInState: false,
     board: [
-        ['','6','9','','','','1','',''],['','8','','2','','','3','',''],['','3','','5','','9','','',''],
-        ['','','8','3','','','','','1'],['','','','6','','9','','',''],['6','','','','','2','9','',''],
-        ['','','','7','','3','','5',''],['','','7','','','8','','1',''],['','','4','','','','3','7','']
+        [{ answer: ''},{answer: '6'},{answer: '9'},{answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: ''}],
+        [{ answer: ''},{answer: '8'},{answer: ''},{answer: '2'},{answer: ''},{answer: ''},{answer: '3'},{answer: ''},{answer: ''}],
+        [{ answer: ''},{answer: '3'},{answer: ''},{answer: '5'},{answer: ''},{answer: '9'},{answer: ''},{answer: ''},{answer: ''}],
+        [{ answer: ''},{answer: ''},{answer: '8'},{answer: '3'},{answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: '1'}],
+        [{ answer: ''},{answer: ''},{answer: ''},{answer: '6'},{answer: ''},{answer: '9'},{answer: ''},{answer: ''},{answer: ''}],
+        [{ answer: '6'},{answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: '2'},{answer: '9'},{answer: ''},{answer: ''}],
+        [{ answer: ''},{answer: ''},{answer: ''},{answer: '7'},{answer: ''},{answer: '3'},{answer: ''},{answer: '5'},{answer: ''}],
+        [{ answer: ''},{answer: ''},{answer: '7'},{answer: ''},{answer: ''},{answer: '8'},{answer: ''},{answer: '1'},{answer: ''}],
+        [{ answer: ''},{answer: ''},{answer: '4'},{answer: ''},{answer: ''},{answer: ''},{answer: '3'},{answer: '7'},{answer: ''}],
     ]
 };
 
 /**********************************************************************************************/
 // Game Logic
 const evaluateAnswer = userInput => {
-    //console.log(userInput);
-
     // Only accept valid numbers as input
     if (!context.possibleAnswers.includes(userInput)) return;
 
+    if (context.writeInState) {
+        writeInAnswer(userInput);
+        return
+    }
+
     // Ignore the same answer being passed-in
-    if (context.board[context.currentBoxIndex][context.currentCellIndex] == userInput) return;
+    if (context.board[context.currentBoxIndex][context.currentCellIndex].answer == userInput) return;
 
     // Highlight cells preventing userInput
     if (foundInCurrentBox(userInput) || foundHorizontally(userInput) || foundVertically(userInput)) return;
@@ -29,9 +39,9 @@ const evaluateAnswer = userInput => {
 }
 
 const foundInCurrentBox = userInput => {
-    if (!context.board[context.currentBoxIndex].includes(userInput)) return false;
+    if (!context.board[context.currentBoxIndex].some(cell => cell.answer === userInput)) return false;
     
-    highlightCell(`${context.currentBoxIndex}~${context.board[context.currentBoxIndex].indexOf(userInput)}`);
+    highlightCell(`${context.currentBoxIndex}~${context.board[context.currentBoxIndex].indexOf(context.board[context.currentBoxIndex].find(cell => cell.answer === userInput))}`);
     return true;
 }
 
@@ -61,7 +71,7 @@ const checkIds = (currentId, userInput) => {
     let cellIdArray = currentId.split("~");
     let boxToCheck = cellIdArray[0];
     let cellToCheck = cellIdArray[1];
-    if (context.board[boxToCheck][cellToCheck] != userInput) return false;
+    if (context.board[boxToCheck][cellToCheck].answer != userInput) return false;
     highlightCell(currentId);
     return true;
 }
@@ -92,9 +102,27 @@ const findVerticalIndexes = () => {
     }
 }
 
+const writeInAnswer = userInput => {
+    //console.log(writeInIndex);
+    updateWriteIn(`${context.currentCellId}~${userInput - 1}`, userInput)
+
+}
+
+// FIXME -- adding an answer removes capability to do write-ins later
 const updateBoard = newValue => {
     document.getElementById(context.currentCellId).innerHTML = newValue;
-    context.board[context.currentBoxIndex][context.currentCellIndex] = newValue;
+    context.board[context.currentBoxIndex][context.currentCellIndex].answer = newValue;
+}
+
+const updateWriteIn = (idToUpdate, userInput) => {
+    if (!context.board[context.currentBoxIndex][context.currentCellIndex].writeIns[userInput - 1]) {
+        document.getElementById(idToUpdate).innerHTML = userInput;
+        context.board[context.currentBoxIndex][context.currentCellIndex].writeIns[userInput - 1] = userInput;
+    }
+    else {
+        document.getElementById(idToUpdate).innerHTML = '';
+        context.board[context.currentBoxIndex][context.currentCellIndex].writeIns[userInput - 1] = '';
+    }
 }
 
 const highlightCell = cellId => {
@@ -104,7 +132,28 @@ const highlightCell = cellId => {
 }
 /**********************************************************************************************/
 
-//const createOrRefreshBoard = () => {
+/*--------------------------------------------------------------------------------------------*/
+// Buttons
+const toggleWriteIn = writeInButton => {
+    context.writeInState = !context.writeInState;
+    if (context.writeInState) {
+        writeInButton.value = 'Answer';
+    }
+    else {
+        writeInButton.value = 'Write-In';
+    }
+}
+/*--------------------------------------------------------------------------------------------*/
+
+/*============================================================================================*/
+//Board Creation
+
+// Create Write-In arrays
+context.board.forEach(box => {
+    box.forEach(cell => { if (!cell.answer) cell.writeIns = Array.from({ length: 9 }, () => '') })
+});
+/*============================================================================================*/
+
 const templateElement = document.getElementById("templateHB");
 const templateSource = templateElement.innerHTML;
 const template = Handlebars.compile(templateSource);
@@ -115,16 +164,15 @@ Handlebars.registerHelper('beginRow'      ,   function(index) { return rowBeginn
 Handlebars.registerHelper('endRow'        ,   function(index) { return rowEndingIndexes.includes(index)    } ); // Returns TRUE if ending a row
 Handlebars.registerHelper('startingValue' ,   function(value) { return value                               } ); // Returns TRUE if value is populated at the start
 // *********************************************************************************************************
-
 const compiledHtml = template(context);
 document.getElementById("gameArea").innerHTML = compiledHtml;
-//}
 
 //createOrRefreshBoard();
 
 // Logic for clicking on a cell
 const elements = document.querySelectorAll('.cell');
 
+// IDEA - what if each cell had an onclick value?
 elements.forEach((clickedCell) => {
     clickedCell.addEventListener('click', () => {
         const cellIdArray = clickedCell.id.split("~");
@@ -136,6 +184,9 @@ elements.forEach((clickedCell) => {
         
         // Track current cell
         context.currentCellId = clickedCell.id;
+
+        //Testing
+        //console.log(clickedCell.childNodes);
 
         findHorizontalIndexes();
         findVerticalIndexes();
