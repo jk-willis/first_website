@@ -23,20 +23,23 @@
                                          
                                         <!-- Add unique id based on outerBox~innerBox indexes-->
                                         {{#if (startingValue this.answer)}}
-                                            <td id="{{@../index}}~{{@index}}" class="cell starter">{{this.answer}}</td>
+                                            <td id="{{@../index}}~{{@index}}" class="cell starter" onclick="selectCell(this)">{{this.answer}}</td>
                                         {{else}}
-                                            <td id="{{@../index}}~{{@index}}" class="cell">
-                                                <table>
-                                                    {{#each this.writeIns}}
-                                                        {{#if (beginRow @index)}}
-                                                            <tr>
-                                                        {{/if}}
-                                                        <td id="{{@../../index}}~{{@../index}}~{{@index}}" class="write-in">{{this}}</td>
-                                                        {{#if (endRow @index)}}
-                                                            </tr>
-                                                        {{/if}}
-                                                    {{/each}}
-                                                </table>
+                                            <td id="{{@../index}}~{{@index}}" class="cell" onclick="selectCell(this)">
+                                                <div class="cell-container">
+                                                    <p id="{{@../index}}~{{@index}}~answer" class="answer">{{this.answer}}</p>
+                                                    <table class="writeInsTable">
+                                                        {{#each this.writeIns}}
+                                                            {{#if (beginRow @index)}}
+                                                                <tr>
+                                                            {{/if}}
+                                                            <td id="{{@../../index}}~{{@../index}}~{{@index}}" class="write-in">{{this}}</td>
+                                                            {{#if (endRow @index)}}
+                                                                </tr>
+                                                            {{/if}}
+                                                        {{/each}}
+                                                    </table>
+                                                </div>
                                             </td>
                                         {{/if}}
                                         

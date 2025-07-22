@@ -1,7 +1,10 @@
 const rowBeginningIndexes = [0,3,6];
 const rowEndingIndexes = [2,5,8];
+const size = 9;
 const context = {
     currentCellId: '',
+    currentBoxIndex: '',
+    currentCellIndex: '',
     currentPreventingCellId: '',
     possibleAnswers: ['1','2','3','4','5','6','7','8','9'],
     writeInState: false,
@@ -25,8 +28,8 @@ const evaluateAnswer = userInput => {
     if (!context.possibleAnswers.includes(userInput)) return;
 
     if (context.writeInState) {
-        writeInAnswer(userInput);
-        return
+        updateWriteIn(`${context.currentCellId}~${userInput - 1}`, userInput)
+        return;
     }
 
     // Ignore the same answer being passed-in
@@ -102,16 +105,10 @@ const findVerticalIndexes = () => {
     }
 }
 
-const writeInAnswer = userInput => {
-    //console.log(writeInIndex);
-    updateWriteIn(`${context.currentCellId}~${userInput - 1}`, userInput)
-
-}
-
-// FIXME -- adding an answer removes capability to do write-ins later
 const updateBoard = newValue => {
-    document.getElementById(context.currentCellId).innerHTML = newValue;
+    document.getElementById(`${context.currentCellId}~answer`).innerHTML = newValue;
     context.board[context.currentBoxIndex][context.currentCellIndex].answer = newValue;
+    for (let i = 0; i < size; i++) { updateWriteIn(`${context.currentCellId}~${i}`, '') };
 }
 
 const updateWriteIn = (idToUpdate, userInput) => {
@@ -171,31 +168,27 @@ document.getElementById("gameArea").innerHTML = compiledHtml;
 
 // Logic for clicking on a cell
 const elements = document.querySelectorAll('.cell');
+addEventListener("keydown",  (event) => { if (context.currentBoxIndex && context.currentCellIndex && event.key == 'Backspace') updateBoard('') });
+addEventListener("keypress", (event) => { if (context.currentBoxIndex && context.currentCellIndex) evaluateAnswer(event.key) });
 
-// IDEA - what if each cell had an onclick value?
-elements.forEach((clickedCell) => {
-    clickedCell.addEventListener('click', () => {
-        const cellIdArray = clickedCell.id.split("~");
-        context.currentBoxIndex = cellIdArray[0];
-        context.currentCellIndex = cellIdArray[1];
+const selectCell = clickedCell => {
+    const cellIdArray = clickedCell.id.split("~");
+    context.currentBoxIndex = cellIdArray[0];
+    context.currentCellIndex = cellIdArray[1];
 
-        //Reset cell styles
-        if (context.currentCellId && clickedCell.id != context.currentCellId) document.getElementById(context.currentCellId).classList.remove('highlighted');
-        
-        // Track current cell
-        context.currentCellId = clickedCell.id;
+    //Reset cell styles
+    if (context.currentCellId && clickedCell.id != context.currentCellId) document.getElementById(context.currentCellId).classList.remove('highlighted');
+    
+    // Track current cell
+    context.currentCellId = clickedCell.id;
 
-        //Testing
-        //console.log(clickedCell.childNodes);
+    //Testing
+    //console.log(clickedCell.childNodes);
 
-        findHorizontalIndexes();
-        findVerticalIndexes();
+    findHorizontalIndexes();
+    findVerticalIndexes();
 
-        clickedCell.classList.add('highlighted');
-        
-        addEventListener("keydown",  (event) => { if (event.key == 'Backspace') updateBoard('') });
-        addEventListener("keypress", (event) => { evaluateAnswer(event.key) });
-
-        //console.log(context);
-    })
-});
+    clickedCell.classList.add('highlighted');
+    
+    //console.log(context);
+}

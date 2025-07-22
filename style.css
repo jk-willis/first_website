@@ -74,11 +74,31 @@ nav {
     width: 10%;
     height: 10%;
     text-align: center;
-    font-size: xx-small
+    font-size: xx-small;
 }
 
 .starter {
     background-color: lightgray;
+}
+
+.cell-container {
+    position: relative;
+}
+
+.answer {
+    position: absolute;
+    height: 50px;  
+    width: 50px;
+    top: -54px;
+    left: -2px;
+}
+
+.writeInsTable {
+    position: absolute;
+    height: 50px;  
+    width: 50px;
+    top: -24px;
+    left: -1px
 }
 
 .highlighted {
