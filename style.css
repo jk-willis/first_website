@@ -101,6 +101,14 @@ nav {
     left: -1px
 }
 
+.selected {
+    background-color: gold;
+}
+
+.answer-button-selected {
+    background-color: lightblue;
+}
+
 .highlighted {
     background-color: yellow;
 }
@@ -119,4 +127,30 @@ nav {
     display: flex; /* Make the section a flex container */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
+    padding-top: 10px;
+}
+
+.answer-button {
+    position: relative;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 14%;
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+}
+
+.answer-button p {
+    position: absolute;
+    font-size: xx-large;
+    font-weight: bold;
+    top: -29px;
+    left: 16px;
+}
+
+.answer-button span {
+    position: absolute;
+    font-size: small;
+    top: 0px;
+    left: 36px;
 }

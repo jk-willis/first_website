@@ -55,6 +55,14 @@
                 {{/each}}
             </table>
         </section>
+        <section class="gameOptions">
+            {{#each answerButtons}}
+                <div id="answer-button~{{this.answer}}" class="answer-button" onclick="clickAnswerButton(this)">
+                    <p id="answer-label~{{this.answer}}">{{this.answer}}</p>
+                    <span id="answer-count~{{this.answer}}">{{this.count}}</span>
+                </div>
+            {{/each}}
+        </section>
     </script>
     <title>Document</title>
 </head>
@@ -72,9 +80,7 @@
     </header>
     <section id="gameArea">test</section>
     <section class="gameOptions">
-        <ul>
-            <input type="button" value="Write-In" onclick="toggleWriteIn(this)">
-        </ul>
+        <input type="button" value="Write-In" onclick="toggleWriteIn(this)">
     </section>
     <script src="main.js"></script>
 </body>
