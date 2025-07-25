@@ -20,6 +20,7 @@ const context = {
         {answer: '9', count: 4}
     ],
     writeInState: false,
+    // Hard
     // board: [
     //     [{ answer: ''},{answer: '6'},{answer: '9'},{answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: ''}],
     //     [{ answer: ''},{answer: '8'},{answer: ''},{answer: '2'},{answer: ''},{answer: ''},{answer: '3'},{answer: ''},{answer: ''}],
@@ -31,6 +32,7 @@ const context = {
     //     [{ answer: ''},{answer: ''},{answer: '7'},{answer: ''},{answer: ''},{answer: '8'},{answer: ''},{answer: '1'},{answer: ''}],
     //     [{ answer: ''},{answer: ''},{answer: '4'},{answer: ''},{answer: ''},{answer: ''},{answer: '3'},{answer: '7'},{answer: ''}],
     // ],
+    // Easy
     board: [
         [{ answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: '9'},{answer: '2'},{answer: '8'},{answer: ''},{answer: ''}],
         [{ answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: ''},{answer: '4'},{answer: '6'},{answer: ''},{answer: '1'}],
