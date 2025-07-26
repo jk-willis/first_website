@@ -7,53 +7,24 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="templateHB" type="text/x-handlebars-template">
         <section class="container">
-            <table id="board">
-                <!-- Outer 3x3 box -->
+            <div class="board">
                 {{#each board}}
-                    {{#if (beginRow @index)}}
-                        <tr>
-                    {{/if}}
-                            <td class="box">
-                                <table>
-                                    <!-- Inner 3x3 box -->
-                                    {{#each this}}
-                                        {{#if (beginRow @index)}}
-                                            <tr>
-                                        {{/if}}
-                                         
-                                        <!-- Add unique id based on outerBox~innerBox indexes-->
-                                        {{#if (startingValue this.answer)}}
-                                            <td id="{{@../index}}~{{@index}}" class="cell starter" onclick="selectCell(this)">{{this.answer}}</td>
-                                        {{else}}
-                                            <td id="{{@../index}}~{{@index}}" class="cell" onclick="selectCell(this)">
-                                                <div class="cell-container">
-                                                    <p id="{{@../index}}~{{@index}}~answer" class="answer">{{this.answer}}</p>
-                                                    <table class="writeInsTable">
-                                                        {{#each this.writeIns}}
-                                                            {{#if (beginRow @index)}}
-                                                                <tr>
-                                                            {{/if}}
-                                                            <td id="{{@../../index}}~{{@../index}}~{{@index}}" class="write-in">{{this}}</td>
-                                                            {{#if (endRow @index)}}
-                                                                </tr>
-                                                            {{/if}}
-                                                        {{/each}}
-                                                    </table>
-                                                </div>
-                                            </td>
-                                        {{/if}}
-                                        
-                                        {{#if (endRow @index)}}
-                                            </tr>
-                                        {{/if}}
-                                    {{/each}}
-                                </table>
-                            </td>
-                    {{#if (endRow @index)}}
-                        </tr>
-                    {{/if}}
+                    <div class="box">
+                        {{#each this}}
+                        {{#if (startingValue this.answer)}}    
+                            <div id="{{@../index}}~{{@index}}" class="cell starter" onclick="selectCell(this)">{{this.answer}}</div>
+                        {{else}}
+                            <div id="{{@../index}}~{{@index}}" class="writeInsTable" onclick="selectCell(this)">
+                                <p id="{{@../index}}~{{@index}}~answer" class="answer">{{this.answer}}</p>
+                                {{#each this.writeIns}}
+                                    <div id="{{@../../index}}~{{@../index}}~{{@index}}" class="write-in"></div>
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                        {{/each}}
+                    </div>
                 {{/each}}
-            </table>
+            </div>
         </section>
         <section class="gameOptions">
             {{#each answerButtons}}
