@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="templateHB" type="text/x-handlebars-template">
-        <section class="container">
+        <section class="play-area">
+            <div class="timer">TIMER HERE</div>
             <div class="board">
                 {{#each board}}
                     <div class="box">
@@ -25,14 +26,17 @@
                     </div>
                 {{/each}}
             </div>
-        </section>
-        <section class="gameOptions">
-            {{#each answerButtons}}
-                <div id="answer-button~{{this.answer}}" class="answer-button" onclick="clickAnswerButton(this)">
-                    <p id="answer-label~{{this.answer}}">{{this.answer}}</p>
-                    <span id="answer-count~{{this.answer}}">{{this.count}}</span>
-                </div>
-            {{/each}}
+            <div class="answerButtons">
+                {{#each answerButtons}}
+                    <div id="answer-button~{{this.answer}}" class="option-button" onclick="clickAnswerButton(this)">
+                        <div id="answer-label~{{this.answer}}" class="option-button-content">{{this.answer}}</div>
+                        <div id="answer-count~{{this.answer}}" class="option-button-count">{{this.count}}</div>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="optionButtons">
+                <input type="button" value="Write-In" onclick="toggleWriteIn(this)">
+            </div>
         </section>
     </script>
     <title>Document</title>
@@ -49,10 +53,7 @@
             </nav>
         </section>
     </header>
-    <section id="gameArea">test</section>
-    <section class="gameOptions">
-        <input type="button" value="Write-In" onclick="toggleWriteIn(this)">
-    </section>
+    <section id="gameArea"></section>
     <script src="main.js"></script>
 </body>
 </html>
