@@ -113,6 +113,10 @@ nav {
     background-color: lightblue;
 }
 
+.answer-button-done {
+    background-color: grey;
+}
+
 .option-button-selected {
     background-color: lightblue;
 }

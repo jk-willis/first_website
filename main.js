@@ -2,6 +2,7 @@ const rowBeginningIndexes = [0,3,6];
 const rowEndingIndexes = [2,5,8];
 const boardSize = 9;
 const boardSquareRoot = Math.sqrt(boardSize);
+let currentAnswerButtonValue = '';
 let totalSeconds = 0;
 let timerInterval;
 const context = {
@@ -69,6 +70,8 @@ const evaluateAnswer = userInput => {
     updateBoard(userInput);
 
     removeHighlights();
+
+    //incrementAnswerCount(userInput);
 }
 
 const foundInCurrentBox = userInput => {
@@ -137,10 +140,13 @@ const findVerticalIndexes = () => {
 
 const updateBoard = newValue => {
     document.getElementById(`${context.currentCellId}~answer`).innerHTML = newValue;
+    adjustAnswerCount(context.board[context.currentBoxIndex][context.currentCellIndex].answer, newValue);
     context.board[context.currentBoxIndex][context.currentCellIndex].answer = newValue;
+    if (newValue === currentAnswerButtonValue || !newValue) highlightAnswerButtonValue(document.getElementById(`${context.currentCellId}`), !newValue);
     clearWriteIns(newValue);
 }
 
+// FIXME -- Highlight cell based on option-button selected
 const updateWriteIn = (idToUpdate, userInput) => {
     if (!context.board[context.currentBoxIndex][context.currentCellIndex].writeIns[userInput - 1]) {
         document.getElementById(idToUpdate).innerHTML = userInput;
@@ -184,6 +190,24 @@ const clearWriteIns = (newValue) => {
     });
 }
 
+const adjustAnswerCount = (oldValue, newValue) => {
+    let buttonToUpdate;
+    if (!oldValue)  {
+        context.answerButtons[newValue - 1].count++;
+        updateAnswerButton(newValue);
+    }
+    else if (!newValue) {
+        context.answerButtons[oldValue - 1].count--;
+        updateAnswerButton(oldValue);
+    }
+    else {
+        context.answerButtons[oldValue - 1].count--;
+        updateAnswerButton(oldValue);
+        context.answerButtons[newValue - 1].count++;
+        updateAnswerButton(newValue);
+    }
+}
+
 const showPreventingCell = cellId => {
     context.currentPreventingCellId = cellId;
     document.getElementById(cellId).classList.add("preventingCell");
@@ -199,22 +223,39 @@ const removeHighlights =() => {
 const highlightCell = cellId => {
     if (!document.getElementById(cellId).classList.contains('starter') && cellId != context.currentCellId) document.getElementById(cellId).classList.add('highlighted');
 }
+
+const highlightAnswerButtonValue = (element, remove) => {
+    if (remove) {
+        element.classList.remove('answer-button-selected');
+        return;
+    }
+
+    element.classList.add('answer-button-selected');
+}
 /**********************************************************************************************/
 
 /*--------------------------------------------------------------------------------------------*/
 // Buttons
 const clickAnswerButton = answerButton => {
     document.querySelectorAll('.answer-button-selected').forEach(element => element.classList.remove('answer-button-selected'));
-    answerButton.classList.add('answer-button-selected');
-    let valueToHighlight = answerButton.id.split("~")[1];
+    highlightAnswerButtonValue(answerButton);
+    currentAnswerButtonValue = answerButton.id.split("~")[1];
     for (let i = 0; i < boardSize; i++) {
         for (let j = 0; j < boardSize; j++) {
-            if (context.board[i][j].answer === valueToHighlight || (context.board[i][j].writeIns && context.board[i][j].writeIns[valueToHighlight - 1])) {
-                document.getElementById(`${i}~${j}`).classList.add('answer-button-selected');
+            if (context.board[i][j].answer === currentAnswerButtonValue) {
+                highlightAnswerButtonValue(document.getElementById(`${i}~${j}`));
                 break;
             }
+
+            if ((context.board[i][j].writeIns && context.board[i][j].writeIns[currentAnswerButtonValue - 1])) highlightAnswerButtonValue(document.getElementById(`${i}~${j}`));
         }
     }
+}
+
+const updateAnswerButton = answerButtonLabel => {
+    document.getElementById(`answer-count~${answerButtonLabel}`).innerHTML = context.answerButtons[answerButtonLabel - 1].count;
+    if (document.getElementById(`answer-count~${answerButtonLabel}`).innerHTML != `${boardSize}`) document.getElementById(`answer-button~${answerButtonLabel}`).classList.remove('answer-button-done');
+    if (document.getElementById(`answer-count~${answerButtonLabel}`).innerHTML == `${boardSize}`) document.getElementById(`answer-button~${answerButtonLabel}`).classList.add('answer-button-done');
 }
 
 const toggleWriteIn = writeInButton => {
