@@ -2,6 +2,8 @@ const rowBeginningIndexes = [0,3,6];
 const rowEndingIndexes = [2,5,8];
 const boardSize = 9;
 const boardSquareRoot = Math.sqrt(boardSize);
+let totalSeconds = 0;
+let timerInterval;
 const context = {
     currentCellId: '',
     currentBoxIndex: '',
@@ -242,6 +244,7 @@ Handlebars.registerHelper('startingValue' ,   function(value) { return value    
 // *********************************************************************************************************
 const compiledHtml = template(context);
 document.getElementById("gameArea").innerHTML = compiledHtml;
+startTimer();
 
 // Logic for clicking on a cell
 addEventListener("keydown",  (event) => { if (context.currentBoxIndex && context.currentCellIndex && event.key == 'Backspace') updateBoard('') });
@@ -274,4 +277,25 @@ const selectCell = clickedCell => {
     for (let i = 0; i < boardSize; i++) highlightCell(`${context.currentBoxIndex}~${i}`);
     
     //console.log(context);
+}
+
+function startTimer() {
+    timerInterval = setInterval(countUp, 1000); // Update every 1000 milliseconds (1 second)
+}
+
+function countUp() {
+    totalSeconds++;
+
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    // Format minutes and seconds to always have two digits
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+
+    document.getElementById("timer").innerHTML = `${formattedMinutes}:${formattedSeconds}`;
+}
+
+function stopTimer() {
+    clearInterval(timerInterval); // Stop the timer
 }
