@@ -203,17 +203,16 @@ const highlightCell = cellId => {
 // Buttons
 const clickAnswerButton = answerButton => {
     document.querySelectorAll('.answer-button-selected').forEach(element => element.classList.remove('answer-button-selected'));
+    answerButton.classList.add('answer-button-selected');
     let valueToHighlight = answerButton.id.split("~")[1];
-    document.querySelectorAll('.starter').forEach(cell => {
-        if (cell.innerHTML == valueToHighlight) cell.classList.add('answer-button-selected');
-        //console.log(cell.innerHTML);
-    });
-    //FIXME -- highlight more than just starter cells as done above
-    //document.querySelectorAll('.cell').forEach(cell => {
-    //    cell.querySelectorAll('.cell-container').forEach(cellContainer => {
-    //        cellContainer.querySelectorAll('.answer').forEach(answer => console.log(answer))
-    //    });
-    //});
+    for (let i = 0; i < boardSize; i++) {
+        for (let j = 0; j < boardSize; j++) {
+            if (context.board[i][j].answer === valueToHighlight || (context.board[i][j].writeIns && context.board[i][j].writeIns[valueToHighlight - 1])) {
+                document.getElementById(`${i}~${j}`).classList.add('answer-button-selected');
+                break;
+            }
+        }
+    }
 }
 
 const toggleWriteIn = writeInButton => {
