@@ -48,8 +48,8 @@ nav {
 .timer {
     display: flex;
     justify-content: center;
-    align-items: center;
     font-size: xx-large;
+    border: 2px solid;
 }
 
 .board {

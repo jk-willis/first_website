@@ -71,7 +71,7 @@ const evaluateAnswer = userInput => {
 
     removeHighlights();
 
-    //incrementAnswerCount(userInput);
+    if (boardComplete()) stopTimer();
 }
 
 const foundInCurrentBox = userInput => {
@@ -206,6 +206,15 @@ const adjustAnswerCount = (oldValue, newValue) => {
         context.answerButtons[newValue - 1].count++;
         updateAnswerButton(newValue);
     }
+}
+
+const boardComplete = () => {
+    let done = true;
+    context.answerButtons.forEach(button => { 
+        if (button.count != `${boardSize}`) done = false;
+        return;
+    })
+    return done;
 }
 
 const showPreventingCell = cellId => {
