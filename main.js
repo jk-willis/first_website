@@ -2,14 +2,14 @@ const rowBeginningIndexes = [0,3,6];
 const rowEndingIndexes = [2,5,8];
 const boardSize = 9;
 const boardSquareRoot = Math.sqrt(boardSize);
-let currentAnswerButtonValue = '';
+let currentCellId;
+let currentBoxIndex;
+let currentCellIndex;
+let currentPreventingCellId;
+let currentAnswerButtonValue;
 let totalSeconds = 0;
 let timerInterval;
 const context = {
-    currentCellId: '',
-    currentBoxIndex: '',
-    currentCellIndex: '',
-    currentPreventingCellId: '',
     possibleAnswers: ['1','2','3','4','5','6','7','8','9'],
     answerButtons: [
         {answer: '1', count: 3},
@@ -56,13 +56,13 @@ const evaluateAnswer = userInput => {
     if (!context.possibleAnswers.includes(userInput)) return;
 
     if (context.writeInState) {
-        if (context.board[context.currentBoxIndex][context.currentCellIndex].answer) return;
-        updateWriteIn(`${context.currentCellId}~${userInput - 1}`, userInput)
+        if (context.board[currentBoxIndex][currentCellIndex].answer) return;
+        updateWriteIn(`${currentCellId}~${userInput - 1}`, userInput)
         return;
     }
 
     // Ignore the same answer being passed-in
-    if (context.board[context.currentBoxIndex][context.currentCellIndex].answer == userInput) return;
+    if (context.board[currentBoxIndex][currentCellIndex].answer == userInput) return;
 
     // Highlight cells preventing userInput
     if (foundInCurrentBox(userInput) || foundHorizontally(userInput) || foundVertically(userInput)) return;
@@ -75,9 +75,9 @@ const evaluateAnswer = userInput => {
 }
 
 const foundInCurrentBox = userInput => {
-    if (!context.board[context.currentBoxIndex].some(cell => cell.answer === userInput)) return false;
+    if (!context.board[currentBoxIndex].some(cell => cell.answer === userInput)) return false;
     
-    showPreventingCell(`${context.currentBoxIndex}~${context.board[context.currentBoxIndex].indexOf(context.board[context.currentBoxIndex].find(cell => cell.answer === userInput))}`);
+    showPreventingCell(`${currentBoxIndex}~${context.board[currentBoxIndex].indexOf(context.board[currentBoxIndex].find(cell => cell.answer === userInput))}`);
     return true;
 }
 
@@ -114,11 +114,11 @@ const checkIds = (currentId, userInput) => {
 
 const findHorizontalIndexes = () => {
     context.horizontalIds = [];
-    let startingBox = Math.floor(context.currentBoxIndex / boardSquareRoot) * boardSquareRoot;
+    let startingBox = Math.floor(currentBoxIndex / boardSquareRoot) * boardSquareRoot;
     for (let i = 0; i < boardSquareRoot; i++) {
-        let startingCell = Math.floor(context.currentCellIndex / boardSquareRoot) * boardSquareRoot;
+        let startingCell = Math.floor(currentCellIndex / boardSquareRoot) * boardSquareRoot;
         for (let j = 0; j < boardSquareRoot; j++) {
-            if (`${startingBox}~${startingCell}` != context.currentCellId) context.horizontalIds.push(`${startingBox}~${startingCell}`);
+            if (`${startingBox}~${startingCell}` != currentCellId) context.horizontalIds.push(`${startingBox}~${startingCell}`);
             startingCell++;
         }
         startingBox++;
@@ -127,11 +127,11 @@ const findHorizontalIndexes = () => {
 
 const findVerticalIndexes = () => {
     context.vericalIds = [];
-    let startingBox = context.currentBoxIndex % boardSquareRoot;
+    let startingBox = currentBoxIndex % boardSquareRoot;
     for (let i = 0; i < boardSquareRoot; i++) {
-        let startingCell = context.currentCellIndex % boardSquareRoot;
+        let startingCell = currentCellIndex % boardSquareRoot;
         for (let j = 0; j < boardSquareRoot; j++) {
-            if (`${startingBox}~${startingCell}` != context.currentCellId) context.vericalIds.push(`${startingBox}~${startingCell}`);
+            if (`${startingBox}~${startingCell}` != currentCellId) context.vericalIds.push(`${startingBox}~${startingCell}`);
             startingCell += boardSquareRoot;
         }
         startingBox += boardSquareRoot;
@@ -139,32 +139,32 @@ const findVerticalIndexes = () => {
 }
 
 const updateBoard = newValue => {
-    document.getElementById(`${context.currentCellId}~answer`).innerHTML = newValue;
-    adjustAnswerCount(context.board[context.currentBoxIndex][context.currentCellIndex].answer, newValue);
-    context.board[context.currentBoxIndex][context.currentCellIndex].answer = newValue;
-    if (newValue === currentAnswerButtonValue || !newValue) highlightAnswerButtonValue(document.getElementById(`${context.currentCellId}`), !newValue);
+    document.getElementById(`${currentCellId}~answer`).innerHTML = newValue;
+    adjustAnswerCount(context.board[currentBoxIndex][currentCellIndex].answer, newValue);
+    context.board[currentBoxIndex][currentCellIndex].answer = newValue;
+    if (newValue === currentAnswerButtonValue || !newValue) highlightAnswerButtonValue(document.getElementById(`${currentCellId}`), !newValue);
     clearWriteIns(newValue);
 }
 
 // FIXME -- Highlight cell based on option-button selected
 const updateWriteIn = (idToUpdate, userInput) => {
-    if (!context.board[context.currentBoxIndex][context.currentCellIndex].writeIns[userInput - 1]) {
+    if (!context.board[currentBoxIndex][currentCellIndex].writeIns[userInput - 1]) {
         document.getElementById(idToUpdate).innerHTML = userInput;
-        context.board[context.currentBoxIndex][context.currentCellIndex].writeIns[userInput - 1] = userInput;
+        context.board[currentBoxIndex][currentCellIndex].writeIns[userInput - 1] = userInput;
     }
     else {
         document.getElementById(idToUpdate).innerHTML = '';
-        context.board[context.currentBoxIndex][context.currentCellIndex].writeIns[userInput - 1] = '';
+        context.board[currentBoxIndex][currentCellIndex].writeIns[userInput - 1] = '';
     }
 }
 
 // FIXME -- Try to create a function for the clear as it's repeated 3 times
 const clearWriteIns = (newValue) => {
     for (let i = 0; i < boardSize; i++) { 
-        updateWriteIn(`${context.currentCellId}~${i}`, '');
-        if (context.board[context.currentBoxIndex][i].writeIns && context.board[context.currentBoxIndex][i].writeIns[newValue - 1]) {
-            document.getElementById(`${context.currentBoxIndex}~${i}~${newValue - 1}`).innerHTML = '';
-            context.board[context.currentBoxIndex][i].writeIns[newValue - 1] = '';
+        updateWriteIn(`${currentCellId}~${i}`, '');
+        if (context.board[currentBoxIndex][i].writeIns && context.board[currentBoxIndex][i].writeIns[newValue - 1]) {
+            document.getElementById(`${currentBoxIndex}~${i}~${newValue - 1}`).innerHTML = '';
+            context.board[currentBoxIndex][i].writeIns[newValue - 1] = '';
         }
     };
     let cellIdArray = [];
@@ -209,19 +209,19 @@ const adjustAnswerCount = (oldValue, newValue) => {
 }
 
 const showPreventingCell = cellId => {
-    context.currentPreventingCellId = cellId;
+    currentPreventingCellId = cellId;
     document.getElementById(cellId).classList.add("preventingCell");
     document.getElementById(cellId).addEventListener("animationend", () => { document.getElementById(cellId).classList.remove("preventingCell") }); 
 }
 
 const removeHighlights =() => {
-    document.getElementById(context.currentCellId).classList.remove('selected');
+    document.getElementById(currentCellId).classList.remove('selected');
     document.querySelectorAll('.highlighted').forEach(element => element.classList.remove('highlighted'));
-    context.currentCellId = '';
+    currentCellId = '';
 }
 
 const highlightCell = cellId => {
-    if (!document.getElementById(cellId).classList.contains('starter') && cellId != context.currentCellId) document.getElementById(cellId).classList.add('highlighted');
+    if (!document.getElementById(cellId).classList.contains('starter') && cellId != currentCellId) document.getElementById(cellId).classList.add('highlighted');
 }
 
 const highlightAnswerButtonValue = (element, remove) => {
@@ -288,26 +288,26 @@ document.getElementById("gameArea").innerHTML = compiledHtml;
 startTimer();
 
 // Logic for clicking on a cell
-addEventListener("keydown",  (event) => { if (context.currentBoxIndex && context.currentCellIndex && event.key == 'Backspace') updateBoard('') });
-addEventListener("keypress", (event) => { if (context.currentBoxIndex && context.currentCellIndex) evaluateAnswer(event.key) });
+addEventListener("keydown",  (event) => { if (currentBoxIndex && currentCellIndex && event.key == 'Backspace') updateBoard('') });
+addEventListener("keypress", (event) => { if (currentBoxIndex && currentCellIndex) evaluateAnswer(event.key) });
 
 const selectCell = clickedCell => {
     const cellIdArray = clickedCell.id.split("~");
-    context.currentBoxIndex = cellIdArray[0];
-    context.currentCellIndex = cellIdArray[1];
+    currentBoxIndex = cellIdArray[0];
+    currentCellIndex = cellIdArray[1];
 
     //Remove highlights by clicking on the same cell (not sure if I want to keep this functionality)
-    if (context.currentCellId && clickedCell.id == context.currentCellId) {
+    if (currentCellId && clickedCell.id == currentCellId) {
         removeHighlights();
         return;
     }
 
     //Reset cell styles
-    if (context.currentCellId && clickedCell.id != context.currentCellId) document.getElementById(context.currentCellId).classList.remove('selected');
+    if (currentCellId && clickedCell.id != currentCellId) document.getElementById(currentCellId).classList.remove('selected');
     document.querySelectorAll('.highlighted').forEach(element => element.classList.remove('highlighted'));
     
     // Track current cell
-    context.currentCellId = clickedCell.id;
+    currentCellId = clickedCell.id;
 
     findHorizontalIndexes();
     findVerticalIndexes();
@@ -315,7 +315,7 @@ const selectCell = clickedCell => {
     clickedCell.classList.add('selected');
     context.horizontalIds.forEach(id => highlightCell(id));
     context.vericalIds.forEach(id => highlightCell(id));
-    for (let i = 0; i < boardSize; i++) highlightCell(`${context.currentBoxIndex}~${i}`);
+    for (let i = 0; i < boardSize; i++) highlightCell(`${currentBoxIndex}~${i}`);
     
     //console.log(context);
 }

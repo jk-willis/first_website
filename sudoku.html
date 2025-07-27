@@ -12,16 +12,16 @@
                 {{#each board}}
                     <div class="box">
                         {{#each this}}
-                        {{#if (startingValue this.answer)}}    
-                            <div id="{{@../index}}~{{@index}}" class="cell starter" onclick="selectCell(this)">{{this.answer}}</div>
-                        {{else}}
-                            <div id="{{@../index}}~{{@index}}" class="writeInsTable" onclick="selectCell(this)">
-                                <p id="{{@../index}}~{{@index}}~answer" class="answer">{{this.answer}}</p>
-                                {{#each this.writeIns}}
-                                    <div id="{{@../../index}}~{{@../index}}~{{@index}}" class="write-in"></div>
-                                {{/each}}
-                            </div>
-                        {{/if}}
+                            {{#if (startingValue this.answer)}}    
+                                <div id="{{@../index}}~{{@index}}" class="cell starter" onclick="selectCell(this)">{{this.answer}}</div>
+                            {{else}}
+                                <div id="{{@../index}}~{{@index}}" class="writeInsTable" onclick="selectCell(this)">
+                                    <p id="{{@../index}}~{{@index}}~answer" class="answer">{{this.answer}}</p>
+                                    {{#each this.writeIns}}
+                                        <div id="{{@../../index}}~{{@../index}}~{{@index}}" class="write-in"></div>
+                                    {{/each}}
+                                </div>
+                            {{/if}}
                         {{/each}}
                     </div>
                 {{/each}}
