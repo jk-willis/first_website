@@ -218,8 +218,7 @@ const clickAnswerButton = answerButton => {
 
 const toggleWriteIn = writeInButton => {
     context.writeInState = !context.writeInState;
-    // Button should show opposite option
-    writeInButton.value = context.writeInState ? 'Answer' : 'Write-In';
+    writeInButton.classList.toggle('option-button-selected');
 }
 /*--------------------------------------------------------------------------------------------*/
 

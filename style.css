@@ -56,7 +56,7 @@ nav {
     display: grid;
     justify-content: center;
     align-content: center;
-    border: 2px solid blue;
+    border: 2px solid;
     grid-template-columns: repeat(var(--board-size), 175px);
     grid-auto-rows: 175px;
 }
@@ -112,6 +112,10 @@ nav {
     background-color: lightblue;
 }
 
+.option-button-selected {
+    background-color: lightblue;
+}
+
 .highlighted {
     background-color: yellow;
 }
@@ -128,16 +132,16 @@ nav {
 
 .answerButtons {
     grid-column: 3;
-    border: 2px solid red;
-    display: flex; /* Make the section a flex container */
-    justify-content: center; /* Center horizontally */
+    border: 2px solid;
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
 .optionButtons {
     grid-column: 4;
-    border: 2px solid green;
+    border: 2px solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,9 +149,10 @@ nav {
 }
 
 .option-button {
-    display: grid;
-    grid-template-columns: repeat(3, 33%);
-    grid-auto-rows: 3;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
     border-radius: 14%;
     border: 1px solid black;
     width: 50px;
@@ -155,18 +160,23 @@ nav {
     margin: 5px;
 }
 
-.option-button-content {
-    position: absolute;
-    place-self: center;
+.option-button-answer {
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
     font-size: xx-large;
 }
 
 .option-button-count {
-    grid-column: 3;
-    grid-row: 1;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    position: absolute;
+    top: 0;
+    right: 10%;
     font-size: small;
+}
+
+.option-button > img {
+    width: 90%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
 }

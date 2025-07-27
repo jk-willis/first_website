@@ -29,13 +29,16 @@
             <div class="answerButtons">
                 {{#each answerButtons}}
                     <div id="answer-button~{{this.answer}}" class="option-button" onclick="clickAnswerButton(this)">
-                        <div id="answer-label~{{this.answer}}" class="option-button-content">{{this.answer}}</div>
+                        <div id="answer-label~{{this.answer}}" class="option-button-answer">{{this.answer}}</div>
                         <div id="answer-count~{{this.answer}}" class="option-button-count">{{this.count}}</div>
                     </div>
                 {{/each}}
             </div>
             <div class="optionButtons">
-                <input type="button" value="Write-In" onclick="toggleWriteIn(this)">
+                <div class="option-button" onclick="toggleWriteIn(this)">
+                    <!-- <a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Freepik - Flaticon</a> -->
+                    <img src="images/pencil.png"/>
+                </div>
             </div>
         </section>
     </script>
@@ -54,6 +57,7 @@
         </section>
     </header>
     <section id="gameArea"></section>
+    <div class="new-option-button">
     <script src="main.js"></script>
 </body>
 </html>
