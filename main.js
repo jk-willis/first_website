@@ -156,6 +156,7 @@ const updateWriteIn = (idToUpdate, userInput) => {
         document.getElementById(idToUpdate).innerHTML = '';
         context.board[currentBoxIndex][currentCellIndex].writeIns[userInput - 1] = '';
     }
+    if (userInput === currentAnswerButtonValue || !userInput) highlightAnswerButtonValue(document.getElementById(`${currentCellId}`), !userInput);
 }
 
 // FIXME -- Try to create a function for the clear as it's repeated 3 times
@@ -191,7 +192,6 @@ const clearWriteIns = (newValue) => {
 }
 
 const adjustAnswerCount = (oldValue, newValue) => {
-    let buttonToUpdate;
     if (!oldValue)  {
         context.answerButtons[newValue - 1].count++;
         updateAnswerButton(newValue);
@@ -230,10 +230,11 @@ const removeHighlights =() => {
 }
 
 const highlightCell = cellId => {
-    if (!document.getElementById(cellId).classList.contains('starter') && cellId != currentCellId) document.getElementById(cellId).classList.add('highlighted');
+    if (!document.getElementById(cellId).classList.contains('starter') && !document.getElementById(cellId).classList.contains('answer-button-selected') && cellId != currentCellId) document.getElementById(cellId).classList.add('highlighted');
 }
 
 const highlightAnswerButtonValue = (element, remove) => {
+    // FIXME -- This is preventing the current cell from being highlighted as it's clearing it due to the write-in deletions
     if (remove) {
         element.classList.remove('answer-button-selected');
         return;
