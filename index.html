@@ -3,35 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.5">
     <title>Justin Willis Tech</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="navbar">
-                <!-- <li><a href="index.html"></a></li> -->
-                <li></li>
-                <!-- <li><a href="sudoku.html">Sudoku</a></li> -->
-            </ul>
-        </nav>
-    </header>
-    <!-- <div class="container">
-        <img class="big-logo" src="images/boston-public-library-YoK5pBcSY8s-unsplash.jpg">
-    </div> -->
-    <!-- <div class="img-txt-container">
-        <img src="images/akira-hojo-ZxGdri2EWzk-unsplash.jpg">
-        <div>
-            <h1>Welcome!</h1>
-            <p>This is my attempt to make a nice-looking website. I want to be able to help people bring their idea to the web and reach as many people as possible. I would love to discuss how to make your website ideas come to life!</p>
-        </div>
-    </div> -->
-    <section>
+    <header></header>
+    <section class="container">
         <h1>Welcome!</h1>
-        <p>This is my attempt to make a nice-looking website. I want to be able to help people bring their idea to the web and reach as many people as possible. I would love to discuss how to make your website ideas come to life!</p>
+        <p>Thanks for visiting. I want to be able to help bring your ideas to the web and reach as many people as possible. I would love to discuss how to make your website ideas come to life!</p>
+    </section>
+    <section class="contract-container">
+        <div class="contact-intro">
+            <h2 class="contact-title">Get in Touch</h2>
+            <p class="contact-description">
+                Fill out the form below and I'll get back to you as soon as possible.
+            </p>
+        </div>
+
+        <form id ="form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
+            <input type="hidden" name="from_name" value="My Website" />
+
+            <div class="form-group-container">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input id="name" name="name" class="form-input" placeholder="Your name" type="text" required/>
+                </div>
+                <div class="form-group" style="display:none">
+                    <label for="last_name" class="form-label" style="display:none">Last Name</label>
+                    <input id="last_name" name="last_name" class="form-input" placeholder="Last Name" type="text" style="display:none"/>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" name="email" class="form-input" placeholder="Your email" type="email" required/>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input id="phone" name="phone" class="form-input" placeholder="+1 (234) 56789" type="text" required/>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-textarea" id="message" name="message" placeholder="Your message" required></textarea>
+                </div>
+                <button class="form-submit" type="submit">Send Message</button>
+            </div>
+        </form>
     </section>
     <footer>
         <div>Made by Justin Willis</div>
     </footer>
+    <script src="main.js"></script>
 </body>
 </html>
