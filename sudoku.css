@@ -1,0 +1,152 @@
+
+.play-area {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 2fr 9fr 1fr 1fr;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    border: 2px solid;
+}
+
+.board {
+    grid-column: 2;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    border: 2px solid;
+    grid-template-columns: repeat(var(--board-size), 175px);
+    grid-auto-rows: 175px;
+}
+
+.box {
+    display: grid;
+    border: 1px solid black;
+    grid-template-columns: repeat(var(--board-size), var(--board-size-frames));
+    grid-auto-rows: var(--board-size-frames);
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.writeInsTable {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: white;
+    grid-template-columns: repeat(var(--board-size), var(--board-size-frames));
+    grid-auto-rows: var(--board-size-frames);
+}
+
+.starter {
+    font-size: xx-large;
+    background-color: lightgray;
+}
+
+.answer {
+    position: absolute;
+    place-self: center;
+    font-size: xx-large;
+}
+
+.write-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}
+
+.selected {
+    background-color: gold;
+}
+
+.answer-button-selected {
+    background-color: lightblue;
+}
+
+.answer-button-done {
+    background-color: grey;
+}
+
+.option-button-selected {
+    background-color: lightblue;
+}
+
+.highlighted {
+    background-color: yellow;
+}
+
+.preventingCell {
+    animation: redFade 1s forwards;
+}
+
+@keyframes redFade {
+  0% {
+    background-color: red;
+  }
+}
+
+.answerButtons {
+    grid-column: 3;
+    border: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.optionButtons {
+    grid-column: 4;
+    border: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.option-button {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14%;
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.option-button-answer {
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.option-button-count {
+    position: absolute;
+    top: 0;
+    right: 10%;
+    font-size: small;
+}
+
+.option-button > img {
+    width: 90%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-button:hover {
+  background-color: rgb(95, 196, 230);
+  color: white;
+}
