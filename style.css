@@ -25,11 +25,37 @@ body > * {
 }
 
 section {
-    padding: 1rem;
+    padding: 2rem;
 }
 
-p, h1, h2, h3, h4, h5 {
+p, h1, h2, h3, h4, h5, li {
     color: var(--text-color);
+}
+
+h1 {
+    font-size: clamp(2rem, 4vw, 6vw);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 2vw, 4vw);
+}
+
+#hero h1 {
+    margin-bottom: 1rem;
+}
+
+.hero-list {
+    list-style: none;
+}
+
+.hero-list li::before {
+    content: ">>";
+    color: white;
+    display: inline-block;
+}
+
+.hero-list li {
+    font-size: clamp(1.5rem, 2vw, 4vw);
 }
 
 footer {
