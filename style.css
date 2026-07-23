@@ -60,7 +60,7 @@ h2 {
 
 footer {
     color: white;
-    position: fixed;
+    /* position: fixed; */
     width: 100vw;
     bottom: 0;
     padding: 1rem;
