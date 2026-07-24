@@ -76,6 +76,10 @@ h2 {
     align-items: center;
 }
 
+#services {
+    color: white;
+}
+
 .contract-container {
     display: flex;
     flex-direction: column;
