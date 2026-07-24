@@ -1,6 +1,20 @@
 const form = document.getElementById('form');
 const submitBtn = form.querySelector('button[type="submit"]');
 
+const customFontOptions = ['Franklin Gothic Medium',
+                           'Courier New',
+                           'Lucida Sans',
+                           'Times New Roman',
+                           'Arial'
+                            ];
+let customFontIndex = 0;
+
+const customTextChange = setInterval(() => {
+    document.getElementById('customize-text').style.fontFamily = customFontOptions[customFontIndex++];
+    if (customFontIndex + 1 > customFontOptions.length) customFontIndex = 0;
+}, 1000);
+
+/* ======= FORM LOGIC ======= */
 form.addEventListener('submit', async (e) => {
     const lastNameInput = document.getElementById("last_name").value;
     const emailInput = document.getElementById("email").value;
@@ -48,3 +62,4 @@ form.addEventListener('submit', async (e) => {
         submitBtn.disabled = false;
     }
 });
+/* ======= FORM LOGIC ======= */

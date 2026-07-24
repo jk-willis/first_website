@@ -1,5 +1,7 @@
 :root {
   --primary-color: black;
+  --primary-color: #091538;
+  --primary-color: #060f29;
   --text-color: #64C2EC;
   --extra-color-1: #B8F5FF;
   --extra-color-2: #277CA5;
@@ -41,6 +43,10 @@ h2 {
     font-size: clamp(1.5rem, 2vw, 4vw);
 }
 
+#hero {
+    background-image: linear-gradient(to right bottom, black, transparent 70%);
+}
+
 #hero h1 {
     margin-bottom: 1rem;
 }
@@ -59,15 +65,12 @@ h2 {
     font-size: clamp(1.5rem, 2vw, 4vw);
 }
 
-footer {
-    color: white;
-    /* position: fixed; */
-    width: 100vw;
-    bottom: 0;
-    padding: 1rem;
+#about {
+    max-width: 50rem;
 }
 
-footer div {
+.custom-text {
+    height: 50px;
     display: grid;
     justify-content: center;
     align-items: center;
@@ -145,6 +148,18 @@ footer div {
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+}
+
+footer div {
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 815px) {
