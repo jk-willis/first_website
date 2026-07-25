@@ -29,7 +29,38 @@
         </div>
     </section>
     <section id="services">
-        <div>TEST</div>
+        <h2>Need a Website?</h2>
+        <p>Here is an interactive way to help envision what your site could look like</p>
+
+        <div id="website-sandbox">
+            <ul id="sandbox-list">
+                <li><input id="hero-box"     class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_hero)"    /><label for="hero-box"    >Hero</label></li>
+                <li><input id="about-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_about)"   /><label for="about-box"   >About</label></li>
+                <li><input id="services-box" class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_services)"/><label for="services-box">Services</label></li>
+                <li><input id="extra-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_extra)"   /><label for="extra-box"   >Extra!</label></li>
+                <li><input id="socials-box"  class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" /><label for="socials-box" >Socials</label></li>
+            </ul>
+            <div id="sandbox-view">
+                <div id="sandbox_hero">
+                    <h1>Hero</h1>
+                </div>
+                <div id="sandbox_about">
+                    <h2>About Me</h2>
+                </div>
+                <div id="sandbox_services">
+                    <h2>Services</h2>
+                </div>
+                <div id="sandbox_extra">
+                    <h2>EXTRA STUFF</h2>
+                </div>
+                <div id="sandbox_socials">
+                    <div class="link-container">
+                        <a class="social-bubble" target="_blank" href="https://www.facebook.com/anchorchurchsc/"><img src="./images/socials/Facebook_Logo_Secondary.png"/></a>
+                        <a class="social-bubble" target="_blank" href="https://www.instagram.com/anchor.community/"><img src="./images/socials/Instagram_Glyph_White.png"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <section class="contract-container">
         <div class="contact-intro">

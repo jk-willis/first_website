@@ -76,8 +76,73 @@ h2 {
     align-items: center;
 }
 
-#services {
-    color: white;
+#website-sandbox {
+    margin-top: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: auto 8fr;
+}
+
+#sandbox-list {
+    border: 2px white dashed;
+    width: fit-content;
+    height: fit-content;
+    list-style: none;
+    padding: 0.5rem 1rem;
+    position: sticky;
+    top: 2rem;
+}
+
+.sandbox-checkbox {
+    margin-right: 0.4rem;
+}
+
+#sandbox-view {
+    border: 2px white solid;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    height: 500px;
+    display: grid;
+    gap: 1rem;
+
+    & > div {
+        border: 2px black dashed;
+        padding: 1rem;
+        /* display: grid; */
+        height: fit-content;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.link-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    height: fit-content;
+}
+
+.social-bubble {
+    width: 40px;
+    aspect-ratio: 1 / 1;
+    background-color: black;
+    border-radius: 50%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    transition-duration: 300ms;
+}
+
+.social-bubble img {
+    width: 70%;
+    border-radius: 0;
+}
+
+.social-bubble:hover {
+    background-color: yellow;
 }
 
 .contract-container {

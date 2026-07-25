@@ -1,6 +1,4 @@
-const form = document.getElementById('form');
-const submitBtn = form.querySelector('button[type="submit"]');
-
+/* ======= ABOUT LOGIC ======= */
 const customFontOptions = ['Franklin Gothic Medium',
                            'Courier New',
                            'Lucida Sans',
@@ -13,8 +11,16 @@ const customTextChange = setInterval(() => {
     document.getElementById('customize-text').style.fontFamily = customFontOptions[customFontIndex++];
     if (customFontIndex + 1 > customFontOptions.length) customFontIndex = 0;
 }, 1000);
+/* ======= ABOUT LOGIC ======= */
+
+/* ======= SANDBOX LOGIC ======= */
+const toggleSandboxSection = section => { section.classList.toggle('hidden'); }
+/* ======= SANDBOX LOGIC ======= */
 
 /* ======= FORM LOGIC ======= */
+const form = document.getElementById('form');
+const submitBtn = form.querySelector('button[type="submit"]');
+
 form.addEventListener('submit', async (e) => {
     const lastNameInput = document.getElementById("last_name").value;
     const emailInput = document.getElementById("email").value;
