@@ -178,6 +178,33 @@ h2 {
     font-size: clamp(calc(3vw + 1rem), 4vw, 7vw);
 }
 
+.about-container {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 1rem;
+}
+
+.about-container > p {
+    width: 80%;
+    display: grid;
+    align-items: center;
+}
+
+.about-image {
+    display: grid;
+    align-items: center;
+    width: 50%;
+}
+
+.about-image img {
+    border-radius: 1em;
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+
 .link-container {
     display: flex;
     justify-content: center;
