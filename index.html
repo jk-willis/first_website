@@ -41,23 +41,37 @@
                 <li><input id="socials-box"  class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" /><label for="socials-box" >Socials</label></li>
             </ul>
             <div id="sandbox-view">
-                <div id="sandbox_hero">
-                    <h1>Hero</h1>
+                <div id="sandbox_hero" class="shown">
+                    <div class="hero-head">
+                        <h1 class="hero-first">Your</h1>
+                        <img src="./images/face.png" alt="hero-pic"/>
+                        <h1 class="hero-last">Name</h1>
+                    </div>
+                    <h3>occupation in location</h3>
+                    <ul class="sandbox__hero-list">
+                        <li><h2>What</h2></li>
+                        <li><h2>Do</h2></li>
+                        <li><h2>You</h2></li>
+                        <li><h2>Do?</h2></li>
+                    </ul>
                 </div>
-                <div id="sandbox_about">
+                <div id="sandbox_about" class="shown">
                     <h2>About Me</h2>
                 </div>
-                <div id="sandbox_services">
+                <div id="sandbox_services" class="shown">
                     <h2>Services</h2>
                 </div>
-                <div id="sandbox_extra">
+                <div id="sandbox_extra" class="shown">
                     <h2>EXTRA STUFF</h2>
                 </div>
-                <div id="sandbox_socials">
+                <div id="sandbox_socials" class="shown">
                     <div class="link-container">
-                        <a class="social-bubble" target="_blank" href="https://www.facebook.com/anchorchurchsc/"><img src="./images/socials/Facebook_Logo_Secondary.png"/></a>
-                        <a class="social-bubble" target="_blank" href="https://www.instagram.com/anchor.community/"><img src="./images/socials/Instagram_Glyph_White.png"/></a>
+                        <a class="social-bubble" target="_blank"><img src="./images/socials/Facebook_Logo_Secondary.png"/></a>
+                        <a class="social-bubble" target="_blank"><img src="./images/socials/Instagram_Glyph_White.png"/></a>
                     </div>
+                </div>
+                <div id="sandbox_empty" class="hidden">
+                    Well how can you have a website with no content?
                 </div>
             </div>
         </div>

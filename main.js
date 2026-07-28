@@ -14,7 +14,27 @@ const customTextChange = setInterval(() => {
 /* ======= ABOUT LOGIC ======= */
 
 /* ======= SANDBOX LOGIC ======= */
-const toggleSandboxSection = section => { section.classList.toggle('hidden'); }
+const sandboxEmptySection = document.getElementById('sandbox_empty');
+const sandboxCheckboxes = document.querySelectorAll('input.sandbox-checkbox');
+let currentSandboxCheck = sandboxCheckboxes.length;
+
+sandboxCheckboxes.forEach(box => {
+    box.addEventListener('change', () => {
+        if (!box.checked) {
+            currentSandboxCheck--;
+            if (!currentSandboxCheck) toggleSandboxSection(sandboxEmptySection);
+            return;
+        }
+        
+        currentSandboxCheck++;
+        if (currentSandboxCheck === 1) toggleSandboxSection(sandboxEmptySection);
+    });
+});
+
+const toggleSandboxSection = section => { 
+    section.classList.toggle('shown');
+    section.classList.toggle('hidden');
+}
 /* ======= SANDBOX LOGIC ======= */
 
 /* ======= FORM LOGIC ======= */
