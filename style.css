@@ -93,8 +93,13 @@ h2 {
     top: 2rem;
 }
 
-.sandbox-checkbox {
+.sandbox-checkbox, .sandbox-color {
     margin-right: 0.4rem;
+}
+
+.sandbox-color {
+    width: 30px;
+    height: 30px;
 }
 
 .hidden {
@@ -195,7 +200,7 @@ h2 {
 .about-image {
     display: grid;
     align-items: center;
-    width: 50%;
+    width: 60%;
 }
 
 .about-image img {

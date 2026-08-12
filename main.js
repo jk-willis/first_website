@@ -35,6 +35,19 @@ const toggleSandboxSection = section => {
     section.classList.toggle('shown');
     section.classList.toggle('hidden');
 }
+
+// Color
+const sandboxView        = document.getElementById('sandbox-view');
+const textColorBox       = document.getElementById('text-color-box');
+const backgroundColorBox = document.getElementById('bg-color-box');
+
+const changeColor = (property, newColor) => sandboxView.style.setProperty(property, newColor);
+
+textColorBox.value       = getComputedStyle(sandboxView).getPropertyValue('--font-color');
+backgroundColorBox.value = getComputedStyle(sandboxView).getPropertyValue('--background-color');
+
+textColorBox.addEventListener('change',       e => changeColor('--font-color',       e.target.value));
+backgroundColorBox.addEventListener('change', e => changeColor('--background-color', e.target.value));
 /* ======= SANDBOX LOGIC ======= */
 
 /* ======= FORM LOGIC ======= */
