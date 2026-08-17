@@ -91,6 +91,17 @@ h2 {
     padding: 0.5rem 1rem;
     position: sticky;
     top: 2rem;
+    display: grid;
+
+    & > li:has(> input.sandbox-color) {
+        display: flex;
+        align-items: center;
+        margin-top: 0.2rem;
+    }
+
+    & > li:has(> button) {
+        justify-self: center;
+    }
 }
 
 .sandbox-checkbox, .sandbox-color {
@@ -101,6 +112,12 @@ h2 {
     width: 30px;
     height: 30px;
 }
+
+.sandbox-reset {
+    padding: .2rem;
+    cursor: pointer;
+}
+
 
 .hidden {
     display: none;
@@ -113,8 +130,10 @@ h2 {
 }
 
 #sandbox-view {
-    --background-color: white;
-    --font-color: blue;
+    --starting-background-color: white;
+    --starting-font-color: blue;
+    --background-color: var(--starting-background-color);
+    --font-color: var(--starting-font-color);
     
     border: 2px white solid;
     background-color: var(--background-color);
@@ -225,7 +244,8 @@ h2 {
     display: grid;
     justify-items: center;
     align-items: center;
-    transition-duration: 300ms;
+    transition: background-color 300ms;
+    cursor: pointer;
 }
 
 .social-bubble img {

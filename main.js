@@ -14,20 +14,21 @@ const customTextChange = setInterval(() => {
 /* ======= ABOUT LOGIC ======= */
 
 /* ======= SANDBOX LOGIC ======= */
+const sandboxView         = document.getElementById('sandbox-view');
 const sandboxEmptySection = document.getElementById('sandbox_empty');
-const sandboxCheckboxes = document.querySelectorAll('input.sandbox-checkbox');
-let currentSandboxCheck = sandboxCheckboxes.length;
+const sandboxCheckboxes   = document.querySelectorAll('input.sandbox-checkbox');
+let currentNumberOfSandboxesChecked   = sandboxCheckboxes.length;
 
 sandboxCheckboxes.forEach(box => {
     box.addEventListener('change', () => {
         if (!box.checked) {
-            currentSandboxCheck--;
-            if (!currentSandboxCheck) toggleSandboxSection(sandboxEmptySection);
+            currentNumberOfSandboxesChecked--;
+            if (!currentNumberOfSandboxesChecked) toggleSandboxSection(sandboxEmptySection);
             return;
         }
         
-        currentSandboxCheck++;
-        if (currentSandboxCheck === 1) toggleSandboxSection(sandboxEmptySection);
+        currentNumberOfSandboxesChecked++;
+        if (currentNumberOfSandboxesChecked === 1) toggleSandboxSection(sandboxEmptySection);
     });
 });
 
@@ -36,18 +37,38 @@ const toggleSandboxSection = section => {
     section.classList.toggle('hidden');
 }
 
+const resetSandboxSection = section => { 
+    section.classList.add('shown');
+    section.classList.remove('hidden');
+}
+
 // Color
-const sandboxView        = document.getElementById('sandbox-view');
 const textColorBox       = document.getElementById('text-color-box');
 const backgroundColorBox = document.getElementById('bg-color-box');
+const startingBackgroundColor = getComputedStyle(sandboxView).getPropertyValue('--starting-background-color');
+const startingTextColor       = getComputedStyle(sandboxView).getPropertyValue('--starting-font-color');
 
 const changeColor = (property, newColor) => sandboxView.style.setProperty(property, newColor);
 
-textColorBox.value       = getComputedStyle(sandboxView).getPropertyValue('--font-color');
-backgroundColorBox.value = getComputedStyle(sandboxView).getPropertyValue('--background-color');
-
-textColorBox.addEventListener('change',       e => changeColor('--font-color',       e.target.value));
 backgroundColorBox.addEventListener('change', e => changeColor('--background-color', e.target.value));
+textColorBox.addEventListener('change',       e => changeColor('--font-color',       e.target.value));
+
+const sandboxReset = () => {
+    changeColor('--background-color', startingBackgroundColor);
+    changeColor('--font-color', startingTextColor);
+    backgroundColorBox.value = getComputedStyle(sandboxView).getPropertyValue('--background-color');
+    textColorBox.value       = getComputedStyle(sandboxView).getPropertyValue('--font-color');
+
+    if (!currentNumberOfSandboxesChecked) toggleSandboxSection(sandboxEmptySection);
+
+    sandboxCheckboxes.forEach(sandbox => sandbox.checked = true);
+
+    for (const child of sandboxView.children) {
+        if (child !== sandboxEmptySection) resetSandboxSection(child);
+    }
+
+    currentNumberOfSandboxesChecked = sandboxCheckboxes.length;
+}
 /* ======= SANDBOX LOGIC ======= */
 
 /* ======= FORM LOGIC ======= */
@@ -102,3 +123,6 @@ form.addEventListener('submit', async (e) => {
     }
 });
 /* ======= FORM LOGIC ======= */
+
+// Reset colors on refresh
+sandboxReset();

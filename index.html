@@ -41,6 +41,7 @@
                 <li><input id="socials-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" /><label for="socials-box" >Socials</label></li>
                 <li><input id="text-color-box" class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="text-color-box" >Text Color</label></li>
                 <li><input id="bg-color-box"   class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="bg-color-box"   >Background Color</label></li>
+                <li><button class="sandbox-reset"  onclick="sandboxReset()">Reset</button></li>
             </ul>
             <div id="sandbox-view">
                 <div id="sandbox_hero" class="shown">
@@ -79,7 +80,7 @@
                     </div>
                 </div>
                 <div id="sandbox_empty" class="hidden">
-                    Well how can you have a website with no content?
+                    <p>Well how can you have a website with no content?</p>
                 </div>
             </div>
         </div>
