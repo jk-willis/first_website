@@ -229,6 +229,36 @@ h2 {
     object-fit: cover;
 }
 
+.service-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service-items {
+    display: grid;
+    grid-template-columns: repeat(2, 30vw);
+    margin-top: 1em;
+    gap: 1em;
+}
+
+.service-card-container {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: 10% 20% auto;
+    border-radius: 1em;
+    justify-items: center;
+    border: 1px solid;
+    gap: 1.5rem;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    box-shadow: 1px 1px 5px;
+}
+
+.service-card-list {
+    list-style: "- ";
+}
+
 .link-container {
     display: flex;
     justify-content: center;
@@ -254,7 +284,7 @@ h2 {
 }
 
 .social-bubble:hover {
-    background-color: yellow;
+    background-color: var(--font-color);
 }
 
 .contract-container {
@@ -343,7 +373,13 @@ footer div {
     align-items: center;
 }
 
-@media (max-width: 815px) {
+@media (max-width: 815px) and (orientation: portrait) {
+    .service-items {
+        grid-template-columns: 30vw;
+        grid-template-rows: repeat(2, auto);
+        justify-content: center;
+    }
+
     .contract-container {
         width: 80%;
     }
