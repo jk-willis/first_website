@@ -83,6 +83,34 @@ h2 {
     grid-template-columns: auto 8fr;
 }
 
+.sandbox-options {
+    display: flex;
+    transition-duration: 200ms;
+}
+
+.options-offscreen {
+    transform: translateX(calc(-100% - 10px));
+}
+
+#sandbox_options_toggle {
+    --button-wdith: 20px;
+
+    position: sticky;
+    top: 2rem;
+    color: white;
+    background-color: grey;
+    border-radius: 0 1rem 1rem 0;
+    height: 40px;
+    width: var(--button-wdith);
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 #sandbox-list {
     border: 2px white dashed;
     width: fit-content;
@@ -111,9 +139,11 @@ h2 {
 .sandbox-color {
     width: 30px;
     height: 30px;
+    border-radius: 50%;
 }
 
 .sandbox-reset {
+    margin-top: .2rem;
     padding: .2rem;
     cursor: pointer;
 }
@@ -386,5 +416,16 @@ footer div {
 
     .contract-container {
         margin-bottom: 5em;
+    }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+    .sandbox-color {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .hero-first, .hero-last {
+        font-size: 7vw;
     }
 }

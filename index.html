@@ -33,16 +33,21 @@
         <p>Here is an interactive way to help envision what your site could look like</p>
 
         <div id="website-sandbox">
-            <ul id="sandbox-list">
-                <li><input id="hero-box"       class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_hero)"    /><label for="hero-box"    >Hero</label></li>
-                <li><input id="about-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_about)"   /><label for="about-box"   >About</label></li>
-                <li><input id="services-box"   class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_services)"/><label for="services-box">Services</label></li>
-                <li><input id="extra-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_extra)"   /><label for="extra-box"   >Extra!</label></li>
-                <li><input id="socials-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" /><label for="socials-box" >Socials</label></li>
-                <li><input id="text-color-box" class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="text-color-box" >Text Color</label></li>
-                <li><input id="bg-color-box"   class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="bg-color-box"   >Background Color</label></li>
-                <li><button class="sandbox-reset"  onclick="sandboxReset()">Reset</button></li>
-            </ul>
+            <div id="options_box" class="sandbox-options">
+                <ul id="sandbox-list">
+                    <li><input id="hero-box"       class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_hero)"    /><label for="hero-box"    >Hero</label></li>
+                    <li><input id="about-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_about)"   /><label for="about-box"   >About</label></li>
+                    <li><input id="services-box"   class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_services)"/><label for="services-box">Services</label></li>
+                    <li><input id="extra-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_extra)"   /><label for="extra-box"   >Extra!</label></li>
+                    <li><input id="socials-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" /><label for="socials-box" >Socials</label></li>
+                    <li><input id="text-color-box" class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="text-color-box" >Text</label></li>
+                    <li><input id="bg-color-box"   class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="bg-color-box"   >Background</label></li>
+                    <li><button class="sandbox-reset"  onclick="sandboxReset()">Reset</button></li>
+                </ul>
+                <div id="sandbox_options_toggle">
+                    <
+                </div>
+            </div>
             <div id="sandbox-view">
                 <div id="sandbox_hero" class="shown">
                     <div class="hero-head">
@@ -94,6 +99,7 @@
                 </div>
                 <div id="sandbox_extra" class="shown">
                     <h2>EXTRA STUFF!</h2>
+                    <p>Let me know what specific needs you have!</p>
                 </div>
                 <div id="sandbox_socials" class="shown">
                     <div class="link-container">

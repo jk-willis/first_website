@@ -17,7 +17,14 @@ const customTextChange = setInterval(() => {
 const sandboxView         = document.getElementById('sandbox-view');
 const sandboxEmptySection = document.getElementById('sandbox_empty');
 const sandboxCheckboxes   = document.querySelectorAll('input.sandbox-checkbox');
+const sandboxToggle       = document.getElementById('sandbox_options_toggle');
+const optionsBox          = document.getElementById('options_box');
 let currentNumberOfSandboxesChecked   = sandboxCheckboxes.length;
+
+sandboxToggle.addEventListener('click', e => {
+    sandboxToggle.innerHTML = optionsBox.classList.contains('options-offscreen') ? '<' : '>';
+    optionsBox.classList.toggle('options-offscreen');
+});
 
 sandboxCheckboxes.forEach(box => {
     box.addEventListener('change', () => {
