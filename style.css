@@ -89,10 +89,12 @@ h2 {
 }
 
 .options-offscreen {
-    transform: translateX(calc(-100% - 10px));
+    transform: translateX(calc(-30% - 10px));
 }
 
 #sandbox_options_toggle {
+    display: none;
+
     --button-wdith: 20px;
 
     position: sticky;
@@ -147,7 +149,6 @@ h2 {
     padding: .2rem;
     cursor: pointer;
 }
-
 
 .hidden {
     display: none;
@@ -405,7 +406,7 @@ footer div {
 
 @media (max-width: 815px) and (orientation: portrait) {
     .service-items {
-        grid-template-columns: 30vw;
+        grid-template-columns: 50vw;
         grid-template-rows: repeat(2, auto);
         justify-content: center;
     }
@@ -420,12 +421,49 @@ footer div {
 }
 
 @media (max-width: 600px) and (orientation: portrait) {
+    #website-sandbox {
+        margin-top: 1rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 100%;
+    }
+    
+    #options_box, #sandbox-view {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    #sandbox-list {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    #sandbox-view {
+        z-index: -1;
+    }
+    
     .sandbox-color {
         width: 20px;
         height: 20px;
     }
+
+    #sandbox_options_toggle {
+        display: block;
+    }
+
+    .hero-head {
+        height: 175px;
+        grid-template-rows: 175px;
+    }
     
     .hero-first, .hero-last {
         font-size: 7vw;
+    }
+
+    .hero-first {
+        grid-column: 1 / 4;
+    }
+
+    .hero-last {
+        grid-column: 4 / -1;
     }
 }
