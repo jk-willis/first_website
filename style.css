@@ -88,10 +88,12 @@ h2 {
 .sandbox-options {
     display: flex;
     transition-duration: 200ms;
+    z-index: 2;
 }
 
 #sandbox_options_toggle {
     display: none;
+    z-index: 2;
 
     --button-wdith: 20px;
 
@@ -476,7 +478,6 @@ footer div {
 
     #sandbox-list {
         background-color: rgba(0, 0, 0, 0.8);
-        z-index: 2;
     }
     
     .sandbox-color {
@@ -486,7 +487,6 @@ footer div {
 
     #sandbox_options_toggle {
         display: block;
-        z-index: 2;
     }
 
     .hero-head {
