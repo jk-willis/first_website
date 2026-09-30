@@ -486,6 +486,7 @@ footer div {
 
     #sandbox_options_toggle {
         display: block;
+        z-index: 2;
     }
 
     .hero-head {
