@@ -1,6 +1,4 @@
-const form = document.getElementById('form');
-const submitBtn = form.querySelector('button[type="submit"]');
-
+/* ======= ABOUT LOGIC ======= */
 const customFontOptions = ['Franklin Gothic Medium',
                            'Courier New',
                            'Lucida Sans',
@@ -13,8 +11,89 @@ const customTextChange = setInterval(() => {
     document.getElementById('customize-text').style.fontFamily = customFontOptions[customFontIndex++];
     if (customFontIndex + 1 > customFontOptions.length) customFontIndex = 0;
 }, 1000);
+/* ======= ABOUT LOGIC ======= */
+
+/* ======= SANDBOX LOGIC ======= */
+const sandboxView         = document.getElementById('sandbox-view');
+const sandboxEmptySection = document.getElementById('sandbox_empty');
+const sandboxCheckboxes   = document.querySelectorAll('input.sandbox-checkbox');
+const sandboxToggle       = document.getElementById('sandbox_options_toggle');
+const optionsBox          = document.getElementById('options_box');
+const sandboxNameBox          = document.getElementById('sandbox-name');
+const sandboxPhoneBox          = document.getElementById('sandbox-phone');
+const sandboxEmailBox          = document.getElementById('sandbox-email');
+const sandboxMessageBox          = document.getElementById('sandbox-message');
+let currentNumberOfSandboxesChecked   = sandboxCheckboxes.length;
+
+sandboxToggle.addEventListener('click', e => {
+    sandboxToggle.innerHTML = optionsBox.classList.contains('options-offscreen') ? '<' : '>';
+    optionsBox.classList.toggle('options-offscreen');
+});
+
+sandboxCheckboxes.forEach(box => {
+    box.addEventListener('change', () => {
+        if (!box.checked) {
+            currentNumberOfSandboxesChecked--;
+            if (!currentNumberOfSandboxesChecked) toggleSandboxSection(sandboxEmptySection);
+            return;
+        }
+        
+        currentNumberOfSandboxesChecked++;
+        if (currentNumberOfSandboxesChecked === 1) toggleSandboxSection(sandboxEmptySection);
+    });
+});
+
+const toggleSandboxSection = section => { 
+    section.classList.toggle('shown');
+    section.classList.toggle('hidden');
+}
+
+const resetSandboxSection = section => { 
+    section.classList.add('shown');
+    section.classList.remove('hidden');
+}
+
+// Color
+const textColorBox       = document.getElementById('text-color-box');
+const backgroundColorBox = document.getElementById('bg-color-box');
+const startingBackgroundColor = getComputedStyle(sandboxView).getPropertyValue('--starting-background-color');
+const startingTextColor       = getComputedStyle(sandboxView).getPropertyValue('--starting-font-color');
+
+const changeColor = (property, newColor) => sandboxView.style.setProperty(property, newColor);
+
+backgroundColorBox.addEventListener('change', e => changeColor('--background-color', e.target.value));
+textColorBox.addEventListener('change',       e => changeColor('--font-color',       e.target.value));
+
+// Reset
+const sandboxReset = () => {
+    changeColor('--background-color', startingBackgroundColor);
+    changeColor('--font-color', startingTextColor);
+    backgroundColorBox.value = getComputedStyle(sandboxView).getPropertyValue('--background-color');
+    textColorBox.value       = getComputedStyle(sandboxView).getPropertyValue('--font-color');
+
+    if (!currentNumberOfSandboxesChecked) toggleSandboxSection(sandboxEmptySection);
+
+    sandboxCheckboxes.forEach(sandbox => sandbox.checked = true);
+
+    for (const child of sandboxView.children) {
+        if (child !== sandboxEmptySection) resetSandboxSection(child);
+    }
+
+    currentNumberOfSandboxesChecked = sandboxCheckboxes.length;
+
+    // Contact Box
+    sandboxNameBox.value    = '';
+    sandboxPhoneBox.value   = '';
+    sandboxEmailBox.value   = '';
+    sandboxMessageBox.value = '';
+    sandboxMessageBox.style.height = '6rem';
+}
+/* ======= SANDBOX LOGIC ======= */
 
 /* ======= FORM LOGIC ======= */
+const form = document.getElementById('form');
+const submitBtn = form.querySelector('button[type="submit"]');
+
 form.addEventListener('submit', async (e) => {
     const lastNameInput = document.getElementById("last_name").value;
     const emailInput = document.getElementById("email").value;
@@ -63,3 +142,6 @@ form.addEventListener('submit', async (e) => {
     }
 });
 /* ======= FORM LOGIC ======= */
+
+// Reset colors on refresh
+sandboxReset();
