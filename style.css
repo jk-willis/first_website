@@ -468,7 +468,7 @@ footer div {
     }
 
     .options-offscreen {
-        transform: translateX(calc(-33%));
+        transform: translateX(calc(-36%));
     }
     
     #options_box, #sandbox-view {
