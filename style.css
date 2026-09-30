@@ -139,7 +139,9 @@ h2 {
 .sandbox-color {
     width: 30px;
     height: 30px;
+    border: none;
     border-radius: 50%;
+    padding: 0;
 }
 
 .sandbox-reset {
@@ -464,7 +466,7 @@ footer div {
     }
 
     .options-offscreen {
-        transform: translateX(calc(-30% - 10px));
+        transform: translateX(calc(-33%));
     }
     
     #options_box, #sandbox-view {
@@ -473,12 +475,8 @@ footer div {
     }
 
     #sandbox-list {
-        /* width: 30vw; */
         background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    #options-box {
-        z-index: 1;
+        z-index: 2;
     }
     
     .sandbox-color {
