@@ -38,7 +38,7 @@
                     <li><input id="hero-box"       class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_hero)"    /><label for="hero-box"    >Hero</label></li>
                     <li><input id="about-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_about)"   /><label for="about-box"   >About</label></li>
                     <li><input id="services-box"   class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_services)"/><label for="services-box">Services</label></li>
-                    <li><input id="contact-box"   class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_contact)" /><label for="contact-box">Contact</label></li>
+                    <li><input id="contact-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_contact)" /><label for="contact-box">Contact</label></li>
                     <li><input id="extra-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_extra)"   /><label for="extra-box"   >Extra!</label></li>
                     <li><input id="socials-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" /><label for="socials-box" >Socials</label></li>
                     <li><input id="text-color-box" class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="text-color-box" >Text</label></li>
@@ -104,21 +104,21 @@
                         <div class="sandbox-form-group">
                             <div class="sandbox-form-group-pair">
                                 <label for="sandbox_name">Name</label>
-                                <input name="sandbox_name" type="text"/>
+                                <input id="sandbox-name" name="sandbox_name" type="text" placeholder="Your name"/>
                             </div>
                             <div class="sandbox-form-group-pair">
                                 <label for="sandbox_phone">Phone</label>
-                                <input name="sandbox_phone" type="text"/>
+                                <input id="sandbox-phone" name="sandbox_phone" type="text" placeholder="Your email"/>
                             </div>
                             <div class="sandbox-form-group-pair">
                                 <label for="sandbox_email">Email</label>
-                                <input name="sandbox_email" type="text"/>
+                                <input id="sandbox-email" name="sandbox_email" type="text" placeholder="+1 (234) 56789"/>
                             </div>
                         </div>
                         <div class="sandbox-form-group">
                             <div class="sandbox-form-group-pair">
                                 <label for="sandbox_message">Message</label>
-                                <textarea class="sandbox-message" name="sandbox_message" type="message"></textarea>
+                                <textarea id="sandbox-message" class="sandbox-message" name="sandbox_message" type="message" placeholder="Your message"></textarea>
                             </div>
                         </div>
                         <button>Submit</button>

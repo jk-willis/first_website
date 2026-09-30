@@ -19,6 +19,10 @@ const sandboxEmptySection = document.getElementById('sandbox_empty');
 const sandboxCheckboxes   = document.querySelectorAll('input.sandbox-checkbox');
 const sandboxToggle       = document.getElementById('sandbox_options_toggle');
 const optionsBox          = document.getElementById('options_box');
+const sandboxNameBox          = document.getElementById('sandbox-name');
+const sandboxPhoneBox          = document.getElementById('sandbox-phone');
+const sandboxEmailBox          = document.getElementById('sandbox-email');
+const sandboxMessageBox          = document.getElementById('sandbox-message');
 let currentNumberOfSandboxesChecked   = sandboxCheckboxes.length;
 
 sandboxToggle.addEventListener('click', e => {
@@ -60,6 +64,7 @@ const changeColor = (property, newColor) => sandboxView.style.setProperty(proper
 backgroundColorBox.addEventListener('change', e => changeColor('--background-color', e.target.value));
 textColorBox.addEventListener('change',       e => changeColor('--font-color',       e.target.value));
 
+// Reset
 const sandboxReset = () => {
     changeColor('--background-color', startingBackgroundColor);
     changeColor('--font-color', startingTextColor);
@@ -75,6 +80,13 @@ const sandboxReset = () => {
     }
 
     currentNumberOfSandboxesChecked = sandboxCheckboxes.length;
+
+    // Contact Box
+    sandboxNameBox.value    = '';
+    sandboxPhoneBox.value   = '';
+    sandboxEmailBox.value   = '';
+    sandboxMessageBox.value = '';
+    sandboxMessageBox.style.height = '6rem';
 }
 /* ======= SANDBOX LOGIC ======= */
 

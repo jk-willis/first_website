@@ -88,10 +88,6 @@ h2 {
     transition-duration: 200ms;
 }
 
-.options-offscreen {
-    transform: translateX(calc(-30% - 10px));
-}
-
 #sandbox_options_toggle {
     display: none;
 
@@ -183,7 +179,7 @@ h2 {
         height: fit-content;
     }
 
-    & p, h1, h2, h3, h4, h5, li {
+    & p, h1, h2, h3, h4, h5, li, label, button {
         color: var(--font-color);
     }
 }
@@ -339,11 +335,16 @@ h2 {
 .sandbox-form-group-pair {
     display: grid;
     justify-items: center;
+
+    & > input {
+        padding: 0.2rem;
+    }
 }
 
 .sandbox-message {
     padding: 0.5rem;
-    height: 6rem;
+    min-height: 6rem;
+    max-height: 60vh;
     min-width: 30vw;
     max-width: 50vw;
     font-size: 0.875rem;
@@ -459,6 +460,10 @@ footer div {
         gap: 1rem;
         grid-template-columns: 100%;
     }
+
+    .options-offscreen {
+        transform: translateX(calc(-30% - 10px));
+    }
     
     #options_box, #sandbox-view {
         grid-row: 1;
@@ -466,6 +471,7 @@ footer div {
     }
 
     #sandbox-list {
+        /* width: 30vw; */
         background-color: rgba(0, 0, 0, 0.8);
     }
 
