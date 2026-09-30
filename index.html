@@ -38,6 +38,7 @@
                     <li><input id="hero-box"       class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_hero)"    /><label for="hero-box"    >Hero</label></li>
                     <li><input id="about-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_about)"   /><label for="about-box"   >About</label></li>
                     <li><input id="services-box"   class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_services)"/><label for="services-box">Services</label></li>
+                    <li><input id="contact-box"   class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_contact)" /><label for="contact-box">Contact</label></li>
                     <li><input id="extra-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_extra)"   /><label for="extra-box"   >Extra!</label></li>
                     <li><input id="socials-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" /><label for="socials-box" >Socials</label></li>
                     <li><input id="text-color-box" class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="text-color-box" >Text</label></li>
@@ -75,27 +76,53 @@
                 <div id="sandbox_services" class="shown">
                     <h2>Services</h2>
                     <div class="service-container">
-                    <div class="service-items">
-                        <div class="service-card-container">
-                            <h3>Product?</h3>
-                            <img src="images/icons/product.png" alt="icon"/>
-                            <ul class="service-card-list">
-                                <li>What</li>
-                                <li>are you</li>
-                                <li>selling?</li>
-                            </ul>
-                        </div>
-                        <div class="service-card-container">
-                            <h3>Service?</h3>
-                            <img src="images/icons/service.png" alt="icon"/>
-                            <ul class="service-card-list">
-                                <li>What</li>
-                                <li>will you</li>
-                                <li>help with?</li>
-                            </ul>
+                        <div class="service-items">
+                            <div class="service-card-container">
+                                <h3>Product?</h3>
+                                <img src="images/icons/product.png" alt="icon"/>
+                                <ul class="service-card-list">
+                                    <li>What</li>
+                                    <li>are you</li>
+                                    <li>selling?</li>
+                                </ul>
+                            </div>
+                            <div class="service-card-container">
+                                <h3>Service?</h3>
+                                <img src="images/icons/service.png" alt="icon"/>
+                                <ul class="service-card-list">
+                                    <li>What</li>
+                                    <li>will you</li>
+                                    <li>help with?</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div id="sandbox_contact" class="shown">
+                    <h2>Contact</h2>
+                    <div class="sandbox-contact-container">
+                        <div class="sandbox-form-group">
+                            <div class="sandbox-form-group-pair">
+                                <label for="sandbox_name">Name</label>
+                                <input name="sandbox_name" type="text"/>
+                            </div>
+                            <div class="sandbox-form-group-pair">
+                                <label for="sandbox_phone">Phone</label>
+                                <input name="sandbox_phone" type="text"/>
+                            </div>
+                            <div class="sandbox-form-group-pair">
+                                <label for="sandbox_email">Email</label>
+                                <input name="sandbox_email" type="text"/>
+                            </div>
+                        </div>
+                        <div class="sandbox-form-group">
+                            <div class="sandbox-form-group-pair">
+                                <label for="sandbox_message">Message</label>
+                                <textarea class="sandbox-message" name="sandbox_message" type="message"></textarea>
+                            </div>
+                        </div>
+                        <button>Submit</button>
+                    </div>
                 </div>
                 <div id="sandbox_extra" class="shown">
                     <h2>EXTRA STUFF!</h2>
