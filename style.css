@@ -6,6 +6,8 @@
   --extra-color-1: #B8F5FF;
   --extra-color-2: #277CA5;
   --extra-color-3: #113547;
+
+  --options_move_amount: ;
 }
 
 * {
@@ -472,7 +474,7 @@ footer div {
     }
 
     .options-offscreen {
-        transform: translateX(calc(-36%));
+        transform: translateX(var(--options_move_amount));
     }
     
     #options_box, #sandbox-view {

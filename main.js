@@ -19,16 +19,21 @@ const sandboxEmptySection = document.getElementById('sandbox_empty');
 const sandboxCheckboxes   = document.querySelectorAll('input.sandbox-checkbox');
 const sandboxToggle       = document.getElementById('sandbox_options_toggle');
 const optionsBox          = document.getElementById('options_box');
-const sandboxNameBox          = document.getElementById('sandbox-name');
-const sandboxPhoneBox          = document.getElementById('sandbox-phone');
-const sandboxEmailBox          = document.getElementById('sandbox-email');
-const sandboxMessageBox          = document.getElementById('sandbox-message');
+const sandboxNameBox      = document.getElementById('sandbox-name');
+const sandboxPhoneBox     = document.getElementById('sandbox-phone');
+const sandboxEmailBox     = document.getElementById('sandbox-email');
+const sandboxMessageBox   = document.getElementById('sandbox-message');
+
 let currentNumberOfSandboxesChecked   = sandboxCheckboxes.length;
 
+// Toggle Offscreen Button
 sandboxToggle.addEventListener('click', e => {
     sandboxToggle.innerHTML = optionsBox.classList.contains('options-offscreen') ? '<' : '>';
     optionsBox.classList.toggle('options-offscreen');
 });
+
+document.body.style.setProperty('--options_move_amount', `-${document.getElementById('sandbox-list').clientWidth + 20}px`);
+// Toggle Offscreen Button
 
 sandboxCheckboxes.forEach(box => {
     box.addEventListener('change', () => {
