@@ -476,11 +476,17 @@ footer div {
     .options-offscreen {
         transform: translateX(var(--options_move_amount));
     }
+
+    #options_box {
+        position: sticky;
+        top: 2rem;
+    }
     
     #options_box, #sandbox-view {
         grid-row: 1;
         grid-column: 1;
         width: fit-content;
+        height: fit-content;
     }
 
     #sandbox-list {
