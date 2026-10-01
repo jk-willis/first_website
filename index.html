@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=1.15">
+    <link rel="stylesheet" href="style.css?v=1.16">
     <title>Justin Willis Tech</title>
 </head>
 <body>
@@ -20,6 +20,7 @@
     </header>
     <section id="about">
         <div>
+            <h2>My Goal</h2>
             <p>Here to help with your techy needs. My hope is to make your corner of the internet effective, personal, and enjoyable. With close to a decade in the field, I will bring all my learned (and learning) skills to make your dream a reality!</p>
             <br>
             <p>Website-building platforms are out there, but maybe they can't do <strong>exactly</strong> what you want. Therefore, my main advantage for you is...</p>
@@ -35,28 +36,26 @@
         <div id="website-sandbox">
             <div id="options_box" class="sandbox-options">
                 <ul id="sandbox-list">
-                    <li><input id="hero-box"       class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_hero)"    /><label for="hero-box"    >Hero</label></li>
-                    <li><input id="about-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_about)"   /><label for="about-box"   >About</label></li>
-                    <li><input id="services-box"   class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_services)"/><label for="services-box">Services</label></li>
-                    <li><input id="contact-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_contact)" /><label for="contact-box">Contact</label></li>
-                    <li><input id="extra-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_extra)"   /><label for="extra-box"   >Extra!</label></li>
-                    <li><input id="socials-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" /><label for="socials-box" >Socials</label></li>
-                    <li><input id="text-color-box" class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="text-color-box" >Text</label></li>
-                    <li><input id="bg-color-box"   class="sandbox-color" type="color" colorspace="display-p3" alpha/><label for="bg-color-box"   >Background</label></li>
+                    <li><input id="hero-box"       class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_hero)"    ><label for="hero-box"    >Hero</label></li>
+                    <li><input id="about-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_about)"   ><label for="about-box"   >About</label></li>
+                    <li><input id="services-box"   class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_services)"><label for="services-box">Services</label></li>
+                    <li><input id="contact-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_contact)" ><label for="contact-box">Contact</label></li>
+                    <li><input id="extra-box"      class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_extra)"   ><label for="extra-box"   >Extra!</label></li>
+                    <li><input id="socials-box"    class="sandbox-checkbox" type="checkbox" checked onclick="toggleSandboxSection(sandbox_socials)" ><label for="socials-box" >Socials</label></li>
+                    <li><input id="text-color-box" class="sandbox-color" type="color" colorspace="display-p3" alpha><label for="text-color-box" >Text</label></li>
+                    <li><input id="bg-color-box"   class="sandbox-color" type="color" colorspace="display-p3" alpha><label for="bg-color-box"   >Background</label></li>
                     <li><button class="sandbox-reset"  onclick="sandboxReset()">Reset</button></li>
                 </ul>
-                <div id="sandbox_options_toggle">
-                    <
-                </div>
+                <div id="sandbox_options_toggle"></div>
             </div>
             <div id="sandbox-view">
                 <div id="sandbox_hero" class="shown">
                     <div class="hero-head">
                         <h1 class="hero-first">Your</h1>
-                        <img src="./images/face.png" alt="hero-pic"/>
+                        <img src="./images/face.png" alt="hero-pic">
                         <h1 class="hero-last">Name</h1>
                     </div>
-                    <h3>occupation in location</h3>
+                    <h2>occupation in location</h2>
                     <ul class="sandbox__hero-list">
                         <li><h2>What</h2></li>
                         <li><h2>Do</h2></li>
@@ -69,7 +68,7 @@
                     <div class="about-container">
                         <p>This could be a great place to put information about what you provide. Try to provide what you can help people with while also talking about who you are and why people should work with you.</p>
                         <div class="about-image">
-                            <img src="./images/david-boca-D6HPfuyGyjs-unsplash.jpg" alt="Example about me picture; person looking out at the ocean"/>
+                            <img src="./images/david-boca-D6HPfuyGyjs-unsplash.jpg" alt="Example about me picture; person looking out at the ocean">
                         </div>
                     </div>
                 </div>
@@ -79,7 +78,7 @@
                         <div class="service-items">
                             <div class="service-card-container">
                                 <h3>Product?</h3>
-                                <img src="images/icons/product.png" alt="icon"/>
+                                <img src="images/icons/product.png" alt="Product icon">
                                 <ul class="service-card-list">
                                     <li>What</li>
                                     <li>are you</li>
@@ -88,7 +87,7 @@
                             </div>
                             <div class="service-card-container">
                                 <h3>Service?</h3>
-                                <img src="images/icons/service.png" alt="icon"/>
+                                <img src="images/icons/service.png" alt="Service icon">
                                 <ul class="service-card-list">
                                     <li>What</li>
                                     <li>will you</li>
@@ -103,22 +102,22 @@
                     <div class="sandbox-contact-container">
                         <div class="sandbox-form-group">
                             <div class="sandbox-form-group-pair">
-                                <label for="sandbox_name">Name</label>
-                                <input id="sandbox-name" name="sandbox_name" type="text" placeholder="Your name"/>
+                                <label for="sandbox-name">Name</label>
+                                <input id="sandbox-name" name="sandbox_name" type="text" placeholder="Your name">
                             </div>
                             <div class="sandbox-form-group-pair">
-                                <label for="sandbox_phone">Phone</label>
-                                <input id="sandbox-phone" name="sandbox_phone" type="text" placeholder="Your email"/>
+                                <label for="sandbox-phone">Phone</label>
+                                <input id="sandbox-phone" name="sandbox_phone" type="text" placeholder="Your email">
                             </div>
                             <div class="sandbox-form-group-pair">
-                                <label for="sandbox_email">Email</label>
-                                <input id="sandbox-email" name="sandbox_email" type="text" placeholder="+1 (234) 56789"/>
+                                <label for="sandbox-email">Email</label>
+                                <input id="sandbox-email" name="sandbox_email" type="text" placeholder="+1 (234) 56789">
                             </div>
                         </div>
                         <div class="sandbox-form-group">
                             <div class="sandbox-form-group-pair">
-                                <label for="sandbox_message">Message</label>
-                                <textarea id="sandbox-message" class="sandbox-message" name="sandbox_message" type="message" placeholder="Your message"></textarea>
+                                <label for="sandbox-message">Message</label>
+                                <textarea id="sandbox-message" class="sandbox-message" name="sandbox_message" placeholder="Your message"></textarea>
                             </div>
                         </div>
                         <button>Submit</button>
@@ -130,8 +129,8 @@
                 </div>
                 <div id="sandbox_socials" class="shown">
                     <div class="link-container">
-                        <a class="social-bubble" target="_blank"><img src="./images/socials/Facebook_Logo_Secondary.png"/></a>
-                        <a class="social-bubble" target="_blank"><img src="./images/socials/Instagram_Glyph_White.png"/></a>
+                        <a class="social-bubble"><img src="./images/socials/Facebook_Logo_Secondary.png" alt="Facebook logo"></a>
+                        <a class="social-bubble"><img src="./images/socials/Instagram_Glyph_White.png" alt="Instagram logo"></a>
                     </div>
                 </div>
                 <div id="sandbox_empty" class="hidden">
@@ -149,25 +148,25 @@
         </div>
 
         <form id ="form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
-            <input type="hidden" name="from_name" value="My Website" />
+            <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms">
+            <input type="hidden" name="from_name" value="My Website">
 
             <div class="form-group-container">
                 <div class="form-group">
                     <label for="name" class="form-label">Name</label>
-                    <input id="name" name="name" class="form-input" placeholder="Your name" type="text" required/>
+                    <input id="name" name="name" class="form-input" placeholder="Your name" type="text" required>
                 </div>
                 <div class="form-group" style="display:none">
                     <label for="last_name" class="form-label" style="display:none">Last Name</label>
-                    <input id="last_name" name="last_name" class="form-input" placeholder="Last Name" type="text" style="display:none"/>
+                    <input id="last_name" name="last_name" class="form-input" placeholder="Last Name" type="text" style="display:none">
                 </div>
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
-                    <input id="email" name="email" class="form-input" placeholder="Your email" type="email" required/>
+                    <input id="email" name="email" class="form-input" placeholder="Your email" type="email" required>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="form-label">Phone</label>
-                    <input id="phone" name="phone" class="form-input" placeholder="+1 (234) 56789" type="text" required/>
+                    <input id="phone" name="phone" class="form-input" placeholder="+1 (234) 56789" type="text" required>
                 </div>
                 <div class="form-group">
                     <label for="message" class="form-label">Message</label>
@@ -180,6 +179,6 @@
     <footer>
         <div>Made by Justin Willis</div>
     </footer>
-    <script src="main.js?v=1.1"></script>
+    <script src="main.js?v=1.2"></script>
 </body>
 </html>

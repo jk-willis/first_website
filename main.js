@@ -66,6 +66,8 @@ textColorBox.addEventListener('change',       e => changeColor('--font-color',  
 
 // Reset
 const sandboxReset = () => {
+    sandboxToggle.innerHTML = '<';
+    
     changeColor('--background-color', startingBackgroundColor);
     changeColor('--font-color', startingTextColor);
     backgroundColorBox.value = getComputedStyle(sandboxView).getPropertyValue('--background-color');

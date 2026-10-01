@@ -179,9 +179,6 @@ h2 {
     & > div {
         border: 2px black dashed;
         padding: 1rem;
-        /* display: grid;
-        justify-content: center;
-        justify-items: center; */
         height: fit-content;
     }
 
@@ -474,6 +471,7 @@ footer div {
     #options_box, #sandbox-view {
         grid-row: 1;
         grid-column: 1;
+        width: fit-content;
     }
 
     #sandbox-list {
